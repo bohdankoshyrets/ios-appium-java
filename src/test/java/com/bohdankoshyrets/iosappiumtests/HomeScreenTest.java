@@ -20,7 +20,12 @@ public class HomeScreenTest {
     private AboutPage aboutPage;
     private CameraPage camera;
 
-    @BeforeClass
+    @BeforeSuite
+    public void setUpSuite() {
+        System.out.println("SETUP SUITE");
+    }
+
+    @BeforeMethod
     public void setUp() throws Exception {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("appium:platformName", "iOS");
@@ -41,6 +46,7 @@ public class HomeScreenTest {
 
     @Test
     public void openGeneralSettings() {
+
         settings.assertPageIsShown();
         settings.openGeneral();
 
@@ -91,7 +97,7 @@ public class HomeScreenTest {
                 .toggleViewOutsideFrame(SwitchState.OFF);
     }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
         if (driver != null) {
             driver.quit();

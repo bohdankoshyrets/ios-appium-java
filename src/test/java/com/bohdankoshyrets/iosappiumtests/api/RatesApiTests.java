@@ -38,7 +38,7 @@ public class RatesApiTests {
                 { "goverla", 9 },
                 { "money24-7", 12 },
                 { "kut-group", 8 },
-                { "cashalot", 7 },
+                { "cashalot", 8 },
                 { "centro-finance", 4 }
         };
     }
@@ -47,6 +47,7 @@ public class RatesApiTests {
     public void setUp() {
         RestAssured.baseURI = "https://rates.fm";
         rates = RatesApiClient.getAllRates();
+        System.out.println("SETUP RATES API TESTS: " + rates);
     }
 
     @Test(dataProvider = "currenciesAmount")

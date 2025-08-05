@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<suite name="java-testing" verbose="10">
+    <test name="appium tests">
+        <classes>
+            <class name="com.bohdankoshyrets.iosappiumtests.HomeScreenTest"/>
+        </classes>
+    </test>
+    <test name="rest assured API tests">
+        <classes>
+            <class name="com.bohdankoshyrets.iosappiumtests.api.RatesApiTests"/>
+            <class name="com.bohdankoshyrets.iosappiumtests.api.ApiTests"/>
+        </classes>
+    </test>
+</suite>
