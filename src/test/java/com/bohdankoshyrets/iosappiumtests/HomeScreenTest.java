@@ -29,7 +29,7 @@ public class HomeScreenTest {
     public void setUp() throws Exception {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("appium:platformName", "iOS");
-        caps.setCapability("appium:platformVersion", "18.5");
+        caps.setCapability("appium:platformVersion", "18.6");
         caps.setCapability("appium:deviceName", "iPhone 16");
         caps.setCapability("appium:automationName", "XCUITest");
         caps.setCapability("appium:bundleId", "com.apple.Preferences");
@@ -52,6 +52,15 @@ public class HomeScreenTest {
 
         settingsGeneral.openAbout();
         aboutPage.assertVersionExist();
+    }
+
+    @Test
+    public void checkDeviceName() {
+        settings.assertPageIsShown();
+        settings.openGeneral();
+
+        settingsGeneral.openAbout();
+        aboutPage.assertValueExistInNameCell();
     }
 
     @Test

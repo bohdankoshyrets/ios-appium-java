@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import java.time.Duration;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +33,7 @@ public class SettingsPage {
     private static final By SEARCH_FIELD = AppiumBy.iOSClassChain("**/XCUIElementTypeSearchField[`label == 'Search'`]");
     private static final By SEARCH_COLLECTION_VIEW = AppiumBy.iOSClassChain("**/XCUIElementTypeCollectionView[`name == 'com.apple.settings.applicationSearch.collectionView'`]");
     private static final By SEARCH_NO_RESULTS_COLLECTION_VIEW = AppiumBy.iOSClassChain("**/XCUIElementTypeCollectionView[`name == 'com.apple.settings.zeroKeywordSearch.collectionView'`]");
+    private static final By SEARCH_CELLS_QUERY = AppiumBy.iOSClassChain("**/XCUIElementTypeCell");
     private static By resultCell(String query) {
         return AppiumBy.iOSClassChain("**/XCUIElementTypeCell/**/XCUIElementTypeStaticText[`name == '" + query + "'`]");
     }
@@ -48,6 +51,12 @@ public class SettingsPage {
 
     private WebElement searchField() {
         return driver.findElement(SEARCH_FIELD);
+    }
+
+    private List<WebElement> searchCells() {
+        List<WebElement> list = driver.findElements(SEARCH_CELLS_QUERY);
+
+        return list;
     }
 
 //    @FindBy(id = "Search")

@@ -48,7 +48,7 @@ public class CameraPage {
 
     public CameraPage assertDefaultValues() {
         softAssertCellValue(PHOTOGRAPHIC_STYLES_CELL, "Standard");
-        softAssertCellValue(RECORD_VIDEO_CELL,  "4K at 60 fps");
+        softAssertCellValue(RECORD_VIDEO_CELL,  "1080p at 30 fps");
         softAssertCellValue(RECORD_SLO_MO_CELL, "1080p at 240 fps");
         softAssertCellValue(RECORD_SOUND_CELL, "Spatial Audio");
 
