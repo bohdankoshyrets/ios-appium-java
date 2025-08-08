@@ -1,24 +1,21 @@
-package com.bohdankoshyrets.iosappiumtests;
+package com.bohdankoshyrets.iosappiumtests.tests;
 
+import com.bohdankoshyrets.iosappiumtests.base.BaseTest;
 import com.bohdankoshyrets.iosappiumtests.pages.AboutPage;
 import com.bohdankoshyrets.iosappiumtests.pages.SettingsGeneralPage;
 import com.bohdankoshyrets.iosappiumtests.pages.SettingsPage;
+import com.bohdankoshyrets.iosappiumtests.pages.enums.SettingsMenuItem;
 import com.bohdankoshyrets.iosappiumtests.pages.settings.CameraPage;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SwitchState;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.AppiumBy;
-import org.testng.Assert;
+import com.bohdankoshyrets.iosappiumtests.pages.settings.PrivacyPage;
 import org.testng.annotations.*;
-import java.net.URL;
 
-public class HomeScreenTest {
-    private IOSDriver driver;
+public class HomeScreenTest extends BaseTest {
     private SettingsPage settings;
     private SettingsGeneralPage settingsGeneral;
     private AboutPage aboutPage;
     private CameraPage camera;
+    private PrivacyPage privacy;
 
     @BeforeSuite
     public void setUpSuite() {
@@ -26,46 +23,18 @@ public class HomeScreenTest {
     }
 
     @BeforeMethod
-    public void setUp() throws Exception {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("appium:platformName", "iOS");
-        caps.setCapability("appium:platformVersion", "18.6");
-        caps.setCapability("appium:deviceName", "iPhone 16");
-        caps.setCapability("appium:automationName", "XCUITest");
-        caps.setCapability("appium:bundleId", "com.apple.Preferences");
-
-        driver = new IOSDriver(
-                new URL("http://localhost:4723"), caps
-        );
-
+    public void setUp() {
+        System.out.println("HOME SCREEN SETUP TEST");
         settings = new SettingsPage(driver);
         settingsGeneral = new SettingsGeneralPage(driver);
         aboutPage = new AboutPage(driver);
         camera = new CameraPage(driver);
-    }
-
-    @Test
-    public void openGeneralSettings() {
-
-        settings.assertPageIsShown();
-        settings.openGeneral();
-
-        settingsGeneral.openAbout();
-        aboutPage.assertVersionExist();
-    }
-
-    @Test
-    public void checkDeviceName() {
-        settings.assertPageIsShown();
-        settings.openGeneral();
-
-        settingsGeneral.openAbout();
-        aboutPage.assertValueExistInNameCell();
+        privacy = new PrivacyPage(driver);
     }
 
     @Test
     public void searchForFitness() {
-        settings.assertPageIsShown()
+        settings.assertPageIsVisible()
                 .searchFor("Fitness")
                 .waitForResults()
                 .selectResult("Fitness");
@@ -73,8 +42,8 @@ public class HomeScreenTest {
 
     @Test
     public void cameraShowPalFormats() {
-        settings.assertPageIsShown()
-                .openCamera();
+        settings.assertPageIsVisible()
+                .open(SettingsMenuItem.CAMERA_CELL);
 
         camera.assertPageIsShown()
                 .assertDefaultValues()
@@ -106,10 +75,21 @@ public class HomeScreenTest {
                 .toggleViewOutsideFrame(SwitchState.OFF);
     }
 
-    @AfterMethod
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+    @Test
+    public void shouldDisplayGeneralDescription() {
+        settings.assertPageIsVisible();
+        settings.open(SettingsMenuItem.GENERAL_CELL);
+
+        settingsGeneral.assertPageIsVisible();
+        settingsGeneral.assertGeneralDescriptionIsVisible();
+    }
+
+    @Test
+    public void shouldOpenPrivacyPage() {
+        settings.assertPageIsVisible();
+        settings.open(SettingsMenuItem.PRIVACY_CELL);
+
+        privacy.assertPageIsVisible();
+        privacy.openUserTracking();
     }
 }

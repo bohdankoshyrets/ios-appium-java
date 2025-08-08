@@ -13,6 +13,9 @@ public class SettingsGeneralPage {
     private final IOSDriver driver;
     private final WebDriverWait wait;
     private static final By ABOUT_CELL = AppiumBy.accessibilityId("About");
+    private static final By NAV_BAR_TITLE = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeStaticText[`label == 'General'`]");
+    private static final By GENERAL_DESCRIPTION_TITLE = AppiumBy.iOSClassChain("**/XCUIElementTypeCell/**/XCUIElementTypeStaticText[`label == 'General'`]");
+    private static final By GENERAL_DESCRIPTION_TEXT = AppiumBy.iOSClassChain("**/XCUIElementTypeCell/**/XCUIElementTypeStaticText[`label BEGINSWITH 'Manage your overall setup and preferences'`]");
 
     public SettingsGeneralPage(IOSDriver driver) {
         this.driver = driver;
@@ -22,6 +25,17 @@ public class SettingsGeneralPage {
     private WebElement aboutCell() {
         return wait.until(
                 ExpectedConditions.elementToBeClickable(ABOUT_CELL)
+        );
+    }
+
+    public void assertGeneralDescriptionIsVisible() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(GENERAL_DESCRIPTION_TITLE));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(GENERAL_DESCRIPTION_TEXT));
+    }
+
+    public void assertPageIsVisible() {
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(NAV_BAR_TITLE)
         );
     }
 

@@ -1,17 +1,16 @@
 package com.bohdankoshyrets.iosappiumtests.pages;
 
+import com.bohdankoshyrets.iosappiumtests.pages.enums.SettingsMenuItem;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import java.time.Duration;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,22 +26,23 @@ public class SettingsPage {
     }
 
     private static final Logger LOG = LoggerFactory.getLogger(SettingsPage.class);
-    private static final By GENERAL_BUTTON = AppiumBy.accessibilityId("General");
-    private static final By CAMERA_BUTTON = AppiumBy.accessibilityId("Camera");
+
+    private static final By APPLE_ACCOUNT_CELL = AppiumBy.iOSClassChain("**/XCUIElementTypeCell/**/XCUIElementTypeButton[`name == 'com.apple.settings.primaryAppleAccount'`]");
+
     private static final By NAV_BAR_TITLE = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeStaticText[`label == 'Settings'`]");
-    private static final By SEARCH_FIELD = AppiumBy.iOSClassChain("**/XCUIElementTypeSearchField[`label == 'Search'`]");
+    private static final By SEARCH_FIELD = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeSearchField[`label == 'Search'`]");
     private static final By SEARCH_COLLECTION_VIEW = AppiumBy.iOSClassChain("**/XCUIElementTypeCollectionView[`name == 'com.apple.settings.applicationSearch.collectionView'`]");
     private static final By SEARCH_NO_RESULTS_COLLECTION_VIEW = AppiumBy.iOSClassChain("**/XCUIElementTypeCollectionView[`name == 'com.apple.settings.zeroKeywordSearch.collectionView'`]");
     private static final By SEARCH_CELLS_QUERY = AppiumBy.iOSClassChain("**/XCUIElementTypeCell");
+
     private static By resultCell(String query) {
         return AppiumBy.iOSClassChain("**/XCUIElementTypeCell/**/XCUIElementTypeStaticText[`name == '" + query + "'`]");
     }
 
-    private WebElement generalCell() {
-        LOG.info("generalCell");
-        LOG.debug("that's a debug");
-        LOG.error("wow big ERROR!!");
-        return driver.findElement(GENERAL_BUTTON);
+    private WebElement appleAccountCell() {
+        return wait.until(
+                ExpectedConditions.elementToBeClickable(APPLE_ACCOUNT_CELL)
+        );
     }
 
     private WebElement generalNavBarTitle() {
@@ -53,36 +53,24 @@ public class SettingsPage {
         return driver.findElement(SEARCH_FIELD);
     }
 
-    private List<WebElement> searchCells() {
-        List<WebElement> list = driver.findElements(SEARCH_CELLS_QUERY);
+    @FindBy(id = "Search")
+    private WebElement searchField;
 
-        return list;
-    }
-
-//    @FindBy(id = "Search")
-//    private WebElement searchField;
-
-    public SettingsPage assertPageIsShown() {
-        Assert.assertTrue(generalCell().isDisplayed(), "Settings Page is not displayed");
+    public SettingsPage assertPageIsVisible() {
+        Assert.assertTrue(getMenuCell(SettingsMenuItem.GENERAL_CELL).isDisplayed(), "Settings Page is not displayed");
         Assert.assertTrue(generalNavBarTitle().isDisplayed());
-//        Assert.assertTrue(searchField.isDisplayed());
+        Assert.assertTrue(appleAccountCell().isDisplayed());
         return this;
     }
 
-    public void openGeneral() {
-        WebElement generalCell =
-                wait.until(
-                        ExpectedConditions.elementToBeClickable(GENERAL_BUTTON)
-                );
-        generalCell.click();
+    public WebElement getMenuCell(SettingsMenuItem item) {
+        return wait.until(
+                ExpectedConditions.elementToBeClickable(item.getLocator())
+        );
     }
 
-    public void openCamera() {
-        WebElement cameraCell =
-                wait.until(
-                        ExpectedConditions.elementToBeClickable(CAMERA_BUTTON)
-                );
-        cameraCell.click();
+    public void open(SettingsMenuItem item) {
+        getMenuCell(item).click();
     }
 
     public SettingsPage searchFor(String query) {

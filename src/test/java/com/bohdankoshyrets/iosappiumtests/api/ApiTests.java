@@ -4,7 +4,7 @@ import groovy.transform.Final;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ApiTests {
-    @BeforeSuite
+    @BeforeMethod
     public void setUp() {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
         System.out.println("SETUP API TESTS");

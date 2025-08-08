@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="java-testing" verbose="10">
     <test name="appium tests">
         <classes>
-            <class name="com.bohdankoshyrets.iosappiumtests.HomeScreenTest"/>
+            <class name="com.bohdankoshyrets.iosappiumtests.tests.HomeScreenTest"/>
         </classes>
     </test>
     <test name="rest assured API tests">
