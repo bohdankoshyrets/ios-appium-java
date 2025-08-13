@@ -12,9 +12,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import java.time.Duration;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class SettingsPage {
     private final IOSDriver driver;
     private final WebDriverWait wait;
@@ -25,15 +22,12 @@ public class SettingsPage {
         PageFactory.initElements(driver, this);
     }
 
-    private static final Logger LOG = LoggerFactory.getLogger(SettingsPage.class);
-
     private static final By APPLE_ACCOUNT_CELL = AppiumBy.iOSClassChain("**/XCUIElementTypeCell/**/XCUIElementTypeButton[`name == 'com.apple.settings.primaryAppleAccount'`]");
 
     private static final By NAV_BAR_TITLE = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeStaticText[`label == 'Settings'`]");
     private static final By SEARCH_FIELD = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeSearchField[`label == 'Search'`]");
     private static final By SEARCH_COLLECTION_VIEW = AppiumBy.iOSClassChain("**/XCUIElementTypeCollectionView[`name == 'com.apple.settings.applicationSearch.collectionView'`]");
     private static final By SEARCH_NO_RESULTS_COLLECTION_VIEW = AppiumBy.iOSClassChain("**/XCUIElementTypeCollectionView[`name == 'com.apple.settings.zeroKeywordSearch.collectionView'`]");
-    private static final By SEARCH_CELLS_QUERY = AppiumBy.iOSClassChain("**/XCUIElementTypeCell");
 
     private static By resultCell(String query) {
         return AppiumBy.iOSClassChain("**/XCUIElementTypeCell/**/XCUIElementTypeStaticText[`name == '" + query + "'`]");
@@ -53,14 +47,10 @@ public class SettingsPage {
         return driver.findElement(SEARCH_FIELD);
     }
 
-    @FindBy(id = "Search")
-    private WebElement searchField;
-
-    public SettingsPage assertPageIsVisible() {
+    public void assertPageIsVisible() {
         Assert.assertTrue(getMenuCell(SettingsMenuItem.GENERAL_CELL).isDisplayed(), "Settings Page is not displayed");
         Assert.assertTrue(generalNavBarTitle().isDisplayed());
         Assert.assertTrue(appleAccountCell().isDisplayed());
-        return this;
     }
 
     public WebElement getMenuCell(SettingsMenuItem item) {
@@ -73,25 +63,22 @@ public class SettingsPage {
         getMenuCell(item).click();
     }
 
-    public SettingsPage searchFor(String query) {
+    public void searchFor(String query) {
         searchField().click();
         wait.until(ExpectedConditions.elementToBeClickable(SEARCH_NO_RESULTS_COLLECTION_VIEW));
         searchField().sendKeys(query);
-        return this;
     }
 
-    public SettingsPage waitForResults() {
+    public void waitForResults() {
         wait.until(ExpectedConditions.elementToBeClickable(SEARCH_COLLECTION_VIEW));
-        return this;
     }
 
-    public SettingsPage selectResult(String query) {
+    public void selectResult(String query) {
         WebElement foundCell =
                 wait.until(
                         ExpectedConditions.elementToBeClickable(resultCell(query))
                 );
         Assert.assertTrue(foundCell.isDisplayed());
         foundCell.click();
-        return this;
     }
 }

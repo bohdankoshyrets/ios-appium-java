@@ -10,21 +10,26 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class SettingsGeneralPage {
-    private final IOSDriver driver;
     private final WebDriverWait wait;
     private static final By ABOUT_CELL = AppiumBy.accessibilityId("About");
+    private static final By KEYBOARD_CELL = AppiumBy.accessibilityId("Keyboard");
     private static final By NAV_BAR_TITLE = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeStaticText[`label == 'General'`]");
     private static final By GENERAL_DESCRIPTION_TITLE = AppiumBy.iOSClassChain("**/XCUIElementTypeCell/**/XCUIElementTypeStaticText[`label == 'General'`]");
     private static final By GENERAL_DESCRIPTION_TEXT = AppiumBy.iOSClassChain("**/XCUIElementTypeCell/**/XCUIElementTypeStaticText[`label BEGINSWITH 'Manage your overall setup and preferences'`]");
 
     public SettingsGeneralPage(IOSDriver driver) {
-        this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     private WebElement aboutCell() {
         return wait.until(
                 ExpectedConditions.elementToBeClickable(ABOUT_CELL)
+        );
+    }
+
+    private WebElement keyboardCell() {
+        return wait.until(
+                ExpectedConditions.elementToBeClickable(KEYBOARD_CELL)
         );
     }
 
@@ -41,5 +46,9 @@ public class SettingsGeneralPage {
 
     public void openAbout() {
         aboutCell().click();
+    }
+
+    public void openKeyboard() {
+        keyboardCell().click();
     }
 }

@@ -37,23 +37,21 @@ public class CameraPage {
         this.softAssert = new SoftAssert();
     }
 
-    public CameraPage assertPageIsShown() {
+    public void assertPageIsShown() {
         wait.until(ExpectedConditions.elementToBeClickable(NAVBAR_TITLE_LOCATOR));
         wait.until(ExpectedConditions.elementToBeClickable(PHOTOGRAPHIC_STYLES_CELL));
         wait.until(ExpectedConditions.elementToBeClickable(RECORD_VIDEO_CELL));
         wait.until(ExpectedConditions.elementToBeClickable(RECORD_SLO_MO_CELL));
         wait.until(ExpectedConditions.elementToBeClickable(RECORD_SOUND_CELL));
-        return this;
     }
 
-    public CameraPage assertDefaultValues() {
+    public void assertDefaultValues() {
         softAssertCellValue(PHOTOGRAPHIC_STYLES_CELL, "Standard");
         softAssertCellValue(RECORD_VIDEO_CELL,  "1080p at 30 fps");
         softAssertCellValue(RECORD_SLO_MO_CELL, "1080p at 240 fps");
         softAssertCellValue(RECORD_SOUND_CELL, "Spatial Audio");
 
         softAssert.assertAll();
-        return this;
     }
 
     private void softAssertCellValue(By locator, String expected) {
@@ -66,35 +64,28 @@ public class CameraPage {
         );
     }
 
-    public CameraPage toggleMacroControl(SwitchState state) {
+    public void toggleMacroControl(SwitchState state) {
         toggleCellSwitch(state, MACRO_CONTROL_CELL);
-
-        return this;
     }
 
-    public CameraPage toggleLensCorrection(SwitchState state) {
+    public void toggleLensCorrection(SwitchState state) {
         toggleCellSwitch(state, LENS_CORRECTION_CELL);
-        return this;
     }
 
-    public CameraPage toggleGrid(SwitchState state) {
+    public void toggleGrid(SwitchState state) {
         toggleCellSwitch(state, GRID_CELL);
-        return this;
     }
 
-    public CameraPage toggleLevel(SwitchState state) {
+    public void toggleLevel(SwitchState state) {
         toggleCellSwitch(state, LEVEL_CELL);
-        return this;
     }
 
-    public CameraPage toggleMirrorFrontCam(SwitchState state) {
+    public void toggleMirrorFrontCam(SwitchState state) {
         toggleCellSwitch(state, MIRROR_FRONT_CAM_CELL);
-        return this;
     }
 
-    public CameraPage toggleViewOutsideFrame(SwitchState state) {
+    public void toggleViewOutsideFrame(SwitchState state) {
         toggleCellSwitch(state, VIEW_OUTSIDE_FRAME_CELL);
-        return this;
     }
 
     private void toggleCellSwitch(SwitchState state, By locator) {
