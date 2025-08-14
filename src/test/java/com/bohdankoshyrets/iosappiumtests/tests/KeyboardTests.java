@@ -44,4 +44,24 @@ public class KeyboardTests extends BaseTest {
         keyboardList.assertKeyboardIsNotPresent(chosenKeyboardTag);
         keyboardList.addNewKeyboard(chosenKeyboardTag);
     }
+
+    @Test
+    public void assertCannotRemoveOnlyKeyboard() {
+        settings.assertPageIsVisible();
+        settings.open(SettingsMenuItem.GENERAL_CELL);
+
+        settingsGeneral.assertPageIsVisible();
+        settingsGeneral.openKeyboard();
+
+        keyboard.assertPageIsVisible();
+        keyboard.openKeyboards();
+
+        keyboardList.removeExtraKeyboards();
+        keyboardList.assertEditButtonIsDisabled();
+    }
+
+    @Test
+    public void openReminders() {
+        settings.launchReminders();
+    }
 }

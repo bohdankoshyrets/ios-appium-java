@@ -5,12 +5,8 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class SettingsGeneralPage {
-    private final WebDriverWait wait;
+public class SettingsGeneralPage extends BasePage {
     private static final By ABOUT_CELL = AppiumBy.accessibilityId("About");
     private static final By KEYBOARD_CELL = AppiumBy.accessibilityId("Keyboard");
     private static final By NAV_BAR_TITLE = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeStaticText[`label == 'General'`]");
@@ -18,7 +14,7 @@ public class SettingsGeneralPage {
     private static final By GENERAL_DESCRIPTION_TEXT = AppiumBy.iOSClassChain("**/XCUIElementTypeCell/**/XCUIElementTypeStaticText[`label BEGINSWITH 'Manage your overall setup and preferences'`]");
 
     public SettingsGeneralPage(IOSDriver driver) {
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        super(driver);
     }
 
     private WebElement aboutCell() {

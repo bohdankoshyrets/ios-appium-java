@@ -13,10 +13,11 @@ import java.util.*;
 
 public class KeyboardsListPage extends BasePage {
     private static final By EDIT_NAV_BUTTON_BY = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[`name == 'Edit'`]");
+    private static final By DONE_BUTTON_BY = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[`name == 'Done'`]");
     private static final By ADD_NEW_KEYBOARD_BY = AppiumBy.accessibilityId("AddNewKeyboard");
     private static final By DELETE_KEYBOARD_BY = AppiumBy.accessibilityId("Delete");
     private static final By MONOLINGUAL_CELL_BY = AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`name == 'Monolingual'`]");
-
+    private static final By KEYBOARD_CELL_LIST_BY = AppiumBy.iOSClassChain("**/XCUIElementTypeTable/XCUIElementTypeCell");
     private List<WebElement> getKeyboardCellElements(Locale locale) {
         return driver.findElements(
                 AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`name BEGINSWITH '" + locale + "'`]")
@@ -70,7 +71,7 @@ public class KeyboardsListPage extends BasePage {
     }
 
     public void assertKeyboardIsAtTop(Locale keyboardName) {
-        List<WebElement> cellList = driver.findElements(AppiumBy.iOSClassChain("**/XCUIElementTypeTable/XCUIElementTypeCell"));
+        List<WebElement> cellList = driver.findElements(KEYBOARD_CELL_LIST_BY);
         Assert.assertFalse(cellList.isEmpty(), "Expected at least one cell, but none were found");
         Assert.assertTrue(cellList.get(0).getAttribute("name").contains(keyboardName.toString()), "Expected keyboard to be at top, but it was not");
     }
@@ -88,12 +89,14 @@ public class KeyboardsListPage extends BasePage {
         WebElement monolingualKeyboard = driver.findElement(
                 MONOLINGUAL_CELL_BY
         );
+
+        // in case the language has multiple layouts, select the first one
         if (monolingualKeyboard.isDisplayed()) {
             monolingualKeyboard.click();
 
             List<WebElement> layoutList = getKeyboardCellElements(locale);
             layoutList.get(0).click();
-            driver.findElement(By.name("Done")).click();
+            driver.findElement(DONE_BUTTON_BY).click();
         }
     }
 
@@ -105,5 +108,25 @@ public class KeyboardsListPage extends BasePage {
         swipe(keyboardCells.get(0), SwipeDirection.LEFT);
         WebElement deleteButton = driver.findElement(DELETE_KEYBOARD_BY);
         deleteButton.click();
+    }
+
+    public void removeExtraKeyboards() {
+        List<WebElement> keyboardCells = driver.findElements(AppiumBy.iOSNsPredicateString("name != 'AddNewKeyboard' AND type == 'XCUIElementTypeCell'"));
+        Assert.assertTrue(keyboardCells.size() > 1, "There should be at least two keyboards present");
+        for (int i = 0; i < keyboardCells.size() - 1; i++) {
+            WebElement cell = driver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`name != 'AddNewKeyboard'`][" + (keyboardCells.size() - i) + "]"));
+            System.out.println("Removing keyboard: " + cell.getAttribute("name"));
+            swipe(cell, SwipeDirection.LEFT);
+            WebElement deleteButton = driver.findElement(DELETE_KEYBOARD_BY);
+            deleteButton.click();
+            // Wait for delete animation to finish
+            sleepFor(500);
+        }
+    }
+
+    public void assertEditButtonIsDisabled() {
+        WebElement editButton = driver.findElement(EDIT_NAV_BUTTON_BY);
+        Assert.assertTrue(editButton.isDisplayed(), "Edit button should be displayed");
+        Assert.assertFalse(editButton.isEnabled(), "Edit button should be disabled");
     }
 }

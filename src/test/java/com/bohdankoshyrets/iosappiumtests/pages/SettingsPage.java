@@ -5,20 +5,13 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import java.time.Duration;
 
-public class SettingsPage {
-    private final IOSDriver driver;
-    private final WebDriverWait wait;
-
+public class SettingsPage extends BasePage {
     public SettingsPage(IOSDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -80,5 +73,9 @@ public class SettingsPage {
                 );
         Assert.assertTrue(foundCell.isDisplayed());
         foundCell.click();
+    }
+
+    public void launchReminders() {
+        driver.activateApp("com.apple.reminders");
     }
 }

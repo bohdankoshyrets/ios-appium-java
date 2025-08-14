@@ -5,18 +5,14 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class KeyboardPage {
-    WebDriverWait wait;
+public class KeyboardPage extends BasePage {
 
     private static final By NAV_BAR_TITLE = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeStaticText[`label == 'Keyboards'`]");
     private static final By KEYBOARD_CELL = AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`name == 'Keyboards'`]");
 
     public KeyboardPage(IOSDriver driver) {
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        super(driver);
     }
 
     public void assertPageIsVisible() {
@@ -31,6 +27,4 @@ public class KeyboardPage {
         );
         keyboardsCell.click();
     }
-
-
 }

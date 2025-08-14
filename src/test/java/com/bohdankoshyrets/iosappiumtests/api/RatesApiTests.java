@@ -2,13 +2,10 @@ package com.bohdankoshyrets.iosappiumtests.api;
 
 import com.bohdankoshyrets.iosappiumtests.api.utils.RatesApiClient;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
