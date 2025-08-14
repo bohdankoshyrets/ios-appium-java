@@ -2,14 +2,7 @@ package com.bohdankoshyrets.iosappiumtests.tests;
 
 import com.bohdankoshyrets.iosappiumtests.base.BaseTest;
 import com.bohdankoshyrets.iosappiumtests.pages.*;
-import com.bohdankoshyrets.iosappiumtests.pages.enums.CameraOptionItem;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SettingsMenuItem;
-import com.bohdankoshyrets.iosappiumtests.pages.settings.CameraPage;
-
-import static com.bohdankoshyrets.iosappiumtests.pages.enums.CameraOptionItem.*;
-import static com.bohdankoshyrets.iosappiumtests.pages.enums.SwitchState.*;
-
-import com.bohdankoshyrets.iosappiumtests.pages.settings.PrivacyPage;
 import com.bohdankoshyrets.iosappiumtests.pages.settings.userTracking.UserTrackingPage;
 import org.testng.annotations.*;
 

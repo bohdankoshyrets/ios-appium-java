@@ -5,6 +5,8 @@ import com.bohdankoshyrets.iosappiumtests.pages.KeyboardPage;
 import com.bohdankoshyrets.iosappiumtests.pages.KeyboardsListPage;
 import com.bohdankoshyrets.iosappiumtests.pages.SettingsGeneralPage;
 import com.bohdankoshyrets.iosappiumtests.pages.SettingsPage;
+import com.bohdankoshyrets.iosappiumtests.pages.settings.CameraPage;
+import com.bohdankoshyrets.iosappiumtests.pages.settings.PrivacyPage;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
@@ -17,6 +19,9 @@ public class BaseTest {
     protected KeyboardsListPage keyboardList;
     protected SettingsPage settings;
     protected SettingsGeneralPage settingsGeneral;
+    protected CameraPage camera;
+    protected PrivacyPage privacy;
+
 
     @BeforeMethod
     public void setUp() throws Exception {
@@ -31,6 +36,9 @@ public class BaseTest {
         keyboardList = new KeyboardsListPage(driver);
         settings = new SettingsPage(driver);
         settingsGeneral = new SettingsGeneralPage(driver);
+        camera = new CameraPage(driver);
+        privacy = new PrivacyPage(driver);
+
 
     }
 

@@ -38,4 +38,11 @@ public class BasePage {
         driver.executeScript("mobile: swipe", args);
     }
 
+    protected static void sleepFor(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

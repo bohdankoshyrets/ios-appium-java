@@ -11,9 +11,6 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SwitchState;
 
-
-import java.time.Duration;
-
 import static com.bohdankoshyrets.iosappiumtests.pages.enums.CameraOptionItem.*;
 
 public class CameraPage extends BasePage {

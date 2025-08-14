@@ -2,20 +2,14 @@ package com.bohdankoshyrets.iosappiumtests.tests;
 
 import com.bohdankoshyrets.iosappiumtests.base.BaseTest;
 import com.bohdankoshyrets.iosappiumtests.pages.AboutPage;
-import com.bohdankoshyrets.iosappiumtests.pages.SettingsGeneralPage;
-import com.bohdankoshyrets.iosappiumtests.pages.SettingsPage;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SettingsMenuItem;
 import org.testng.annotations.*;
 
 public class AboutTest extends BaseTest {
-    private SettingsPage settings;
-    private SettingsGeneralPage settingsGeneral;
     private AboutPage aboutPage;
 
     @BeforeMethod
-    public void setUp() {
-        settings = new SettingsPage(driver);
-        settingsGeneral = new SettingsGeneralPage(driver);
+    public void setUpAboutPage() {
         aboutPage = new AboutPage(driver);
     }
 

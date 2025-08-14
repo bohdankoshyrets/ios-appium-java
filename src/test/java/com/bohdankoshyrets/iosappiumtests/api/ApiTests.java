@@ -1,17 +1,10 @@
 package com.bohdankoshyrets.iosappiumtests.api;
 
-import groovy.transform.Final;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.MatcherAssert.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class ApiTests {
     @BeforeMethod
