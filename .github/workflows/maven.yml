@@ -49,8 +49,8 @@ jobs:
     - name: Create and boot iOS Simulator
       shell: bash
       run: |
-        DEVICETYPE = "com.apple.CoreSimulator.SimDeviceType.iPhone-16"
-        RUNTIME = "com.apple.CoreSimulator.SimRuntime.iOS-18-6"
+        DEVICETYPE="com.apple.CoreSimulator.SimDeviceType.iPhone-16"
+        RUNTIME="com.apple.CoreSimulator.SimRuntime.iOS-18-6"
         UDID=$(xcrun simctl create "CI-iPhone" "$DEVICETYPE" "$RUNTIME")
 
         xcrun simctl boot "$UDID"
