@@ -1,11 +1,15 @@
 package com.bohdankoshyrets.iosappiumtests.pages;
 
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SwipeDirection;
+import com.bohdankoshyrets.iosappiumtests.pages.enums.SwitchState;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -44,5 +48,22 @@ public class BasePage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void toggleCellSwitch(By cellBy, SwitchState state) {
+        WebElement cell = driver.findElement(cellBy);
+        // to scroll down to the cell without changing the switch state
+        cell.findElement(AppiumBy.iOSClassChain("XCUIElementTypeStaticText")).click();
+        String cellValue = cell.getAttribute("value");
+        String name = cell.getAttribute("name");
+        System.out.printf("cell value for %s: %s%n", name, cellValue);
+
+        SwitchState currentSwitchState = SwitchState.fromString(cellValue);
+
+        if (!currentSwitchState.equals(state)) {
+            cell.click();
+        }
+
+        Assert.assertEquals(cell.getAttribute("value"), state.getStringValue());
     }
 }

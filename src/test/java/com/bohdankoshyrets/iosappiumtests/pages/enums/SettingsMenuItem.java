@@ -3,6 +3,7 @@ package com.bohdankoshyrets.iosappiumtests.pages.enums;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 
+@SuppressWarnings("unused")
 public enum SettingsMenuItem {
     GENERAL_CELL("com.apple.settings.general"),
     ACCESSIBILITY_CELL("com.apple.settings.accessibility"),
@@ -12,6 +13,7 @@ public enum SettingsMenuItem {
     HOME_SCREEN_CELL("com.apple.settings.homeScreen"),
     SEARCH_CELL("com.apple.settings.search"),
     STANDBY_CELL("com.apple.settings.standBy"),
+    APPS_CELL("com.apple.settings.apps"),
 
     PRIVACY_CELL("com.apple.settings.privacyAndSecurity");
 

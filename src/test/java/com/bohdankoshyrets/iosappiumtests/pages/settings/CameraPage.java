@@ -7,7 +7,6 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SwitchState;
 
@@ -51,21 +50,7 @@ public class CameraPage extends BasePage {
         );
     }
 
-    public void toggleCellSwitch(SwitchState state, CameraOptionItem optionItem) {
-        WebElement cell = driver.findElement(optionItem.getBy());
-        // to scroll down to the cell without changing the switch state
-        cell.findElement(AppiumBy.iOSClassChain("XCUIElementTypeStaticText")).click();
-        String cellValue = cell.getAttribute("value");
-        String name = cell.getAttribute("name");
-        System.out.printf("cell value for %s: %s%n", name, cellValue);
-
-        SwitchState currentSwitchState = SwitchState.fromString(cellValue);
-
-        if (!currentSwitchState.equals(state)) {
-            cell.click();
-        }
-
-        Assert.assertEquals(cell.getAttribute("value"), state.getStringValue());
-
+    public void toggleCameraSwitch(CameraOptionItem optionItem, SwitchState state) {
+        toggleCellSwitch(optionItem.getBy(), state);
     }
 }

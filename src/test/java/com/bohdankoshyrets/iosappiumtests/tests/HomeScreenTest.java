@@ -23,6 +23,11 @@ public class HomeScreenTest extends BaseTest {
     }
 
     @Test
+    public void assertSettingsOpens() {
+        settings.assertPageIsVisible();
+    }
+
+    @Test(dependsOnMethods = "assertSettingsOpens")
     public void shouldDisplayGeneralDescription() {
         settings.assertPageIsVisible();
         settings.open(SettingsMenuItem.GENERAL_CELL);
@@ -31,7 +36,7 @@ public class HomeScreenTest extends BaseTest {
         settingsGeneral.assertGeneralDescriptionIsVisible();
     }
 
-    @Test
+    @Test(dependsOnMethods = "assertSettingsOpens")
     public void searchForFitness() {
         settings.assertPageIsVisible();
         settings.searchFor("Fitness");

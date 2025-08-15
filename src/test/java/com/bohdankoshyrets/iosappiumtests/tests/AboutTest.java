@@ -14,7 +14,7 @@ public class AboutTest extends BaseTest {
     }
 
     @Test(description = "Open General Settings and check version")
-    public void openGeneralSettings() {
+    public void openAboutAndCheckVersionExists() {
         settings.assertPageIsVisible();
         settings.open(SettingsMenuItem.GENERAL_CELL);
 
@@ -25,7 +25,9 @@ public class AboutTest extends BaseTest {
         aboutPage.assertVersionExist();
     }
 
-    @Test(description = "Should display correct device name and version")
+    @Test(
+            description = "Should display correct device name and version",
+            dependsOnMethods = "openAboutAndCheckVersionExists")
     public void shouldDisplayCorrectDeviceNameAndVersion() {
         settings.assertPageIsVisible();
         settings.open(SettingsMenuItem.GENERAL_CELL);

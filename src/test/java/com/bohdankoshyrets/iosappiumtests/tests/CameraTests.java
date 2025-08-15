@@ -16,22 +16,22 @@ public class CameraTests extends BaseTest {
         camera.assertPageIsShown();
         camera.assertDefaultValues();
 
-        camera.toggleCellSwitch(ON, MACRO_CONTROL_CELL);
-        camera.toggleCellSwitch(OFF, MACRO_CONTROL_CELL);
+        camera.toggleCameraSwitch(MACRO_CONTROL_CELL, OFF);
+        camera.toggleCameraSwitch(MACRO_CONTROL_CELL, ON);
 
-        camera.toggleCellSwitch(ON, LENS_CORRECTION_CELL);
-        camera.toggleCellSwitch(OFF, LENS_CORRECTION_CELL);
+        camera.toggleCameraSwitch(LENS_CORRECTION_CELL, OFF);
+        camera.toggleCameraSwitch(LENS_CORRECTION_CELL, ON);
 
-        camera.toggleCellSwitch(ON, GRID_CELL);
-        camera.toggleCellSwitch(OFF, GRID_CELL);
+        camera.toggleCameraSwitch(GRID_CELL, OFF);
+        camera.toggleCameraSwitch(GRID_CELL, ON);
 
-        camera.toggleCellSwitch(ON, LEVEL_CELL);
-        camera.toggleCellSwitch(OFF, LEVEL_CELL);
+        camera.toggleCameraSwitch(LEVEL_CELL, OFF);
+        camera.toggleCameraSwitch(LEVEL_CELL, ON);
 
-        camera.toggleCellSwitch(ON, MIRROR_FRONT_CAM_CELL);
-        camera.toggleCellSwitch(OFF, MIRROR_FRONT_CAM_CELL);
+        camera.toggleCameraSwitch(MIRROR_FRONT_CAM_CELL, OFF);
+        camera.toggleCameraSwitch(MIRROR_FRONT_CAM_CELL, ON);
 
-        camera.toggleCellSwitch(ON, VIEW_OUTSIDE_FRAME_CELL);
-        camera.toggleCellSwitch(OFF, VIEW_OUTSIDE_FRAME_CELL);
+        camera.toggleCameraSwitch(VIEW_OUTSIDE_FRAME_CELL, OFF);
+        camera.toggleCameraSwitch(VIEW_OUTSIDE_FRAME_CELL, ON);
     }
 }
