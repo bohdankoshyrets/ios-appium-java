@@ -38,8 +38,6 @@ public class BaseTest {
         settingsGeneral = new SettingsGeneralPage(driver);
         camera = new CameraPage(driver);
         privacy = new PrivacyPage(driver);
-
-
     }
 
     @AfterMethod

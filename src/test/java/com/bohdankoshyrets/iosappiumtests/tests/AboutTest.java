@@ -9,8 +9,14 @@ public class AboutTest extends BaseTest {
     private AboutPage aboutPage;
 
     @BeforeMethod
-    public void setUpAboutPage() {
+    public void beforeMethodAboutPage() {
         aboutPage = new AboutPage(driver);
+//        settings.activateApp();
+    }
+
+    @AfterMethod
+    public void afterMethodAboutPage() {
+//        settings.terminateApp();
     }
 
     @Test(description = "Open General Settings and check version")

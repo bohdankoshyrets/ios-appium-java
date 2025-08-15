@@ -1,10 +1,12 @@
 package com.bohdankoshyrets.iosappiumtests.tests;
 
 import com.bohdankoshyrets.iosappiumtests.base.BaseTest;
-import com.bohdankoshyrets.iosappiumtests.pages.enums.SettingsMenuItem;
 import org.testng.annotations.Test;
 
 import java.util.Locale;
+
+import static com.bohdankoshyrets.iosappiumtests.pages.enums.SettingsMenuItem.*;
+
 
 public class KeyboardTests extends BaseTest {
     @Test
@@ -12,7 +14,7 @@ public class KeyboardTests extends BaseTest {
         Locale chosenKeyboardTag = new Locale("de", "DE");
 
         settings.assertPageIsVisible();
-        settings.open(SettingsMenuItem.GENERAL_CELL);
+        settings.open(GENERAL_CELL);
 
         settingsGeneral.assertPageIsVisible();
         settingsGeneral.openKeyboard();
@@ -31,7 +33,7 @@ public class KeyboardTests extends BaseTest {
         Locale chosenKeyboardTag = new Locale("de", "DE");
 
         settings.assertPageIsVisible();
-        settings.open(SettingsMenuItem.GENERAL_CELL);
+        settings.open(GENERAL_CELL);
 
         settingsGeneral.assertPageIsVisible();
         settingsGeneral.openKeyboard();
@@ -48,7 +50,7 @@ public class KeyboardTests extends BaseTest {
     @Test
     public void assertCannotRemoveOnlyKeyboard() {
         settings.assertPageIsVisible();
-        settings.open(SettingsMenuItem.GENERAL_CELL);
+        settings.open(GENERAL_CELL);
 
         settingsGeneral.assertPageIsVisible();
         settingsGeneral.openKeyboard();
