@@ -25,10 +25,13 @@ public class AppiumCapabilities {
     }
 
     public static XCUITestOptions getOptions() {
+        System.out.println("UDID: " + System.getProperty("appium.device.udid"));
         XCUITestOptions opts = new XCUITestOptions();
         opts.setUdid(System.getProperty("appium.device.udid"));
+        opts.setPlatformName(PLATFORM_NAME);
         opts.setPlatformVersion("18.6");
         opts.setWdaLaunchTimeout(Duration.ofSeconds(180));
+        opts.setShowXcodeLog(true);
         return opts;
     }
 }
