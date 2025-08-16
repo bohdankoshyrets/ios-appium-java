@@ -75,6 +75,12 @@ jobs:
       run: |
         echo $UDID
         xcrun simctl list devices | grep "$UDID"
+        echo "xcrun xcode version: "
+        xcrun xcodebuild -version
+        
+        echo "xcode-select path: "
+        xcode-select -p
+        
         mvn -q clean test -Dappium.device.udid="$UDID"
 
     - name: Upload test reports

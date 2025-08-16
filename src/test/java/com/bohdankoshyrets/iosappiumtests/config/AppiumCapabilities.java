@@ -33,10 +33,6 @@ public class AppiumCapabilities {
         opts.setPlatformVersion("18.6");
         opts.setWdaLaunchTimeout(Duration.ofSeconds(60));
         opts.setShowXcodeLog(true);
-        opts.setCapability("xcodebuildArgs", Arrays.asList(
-                "-sdk", "iphonesimulator"
-        ));
-
         return opts;
     }
 }
