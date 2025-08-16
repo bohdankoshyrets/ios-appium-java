@@ -61,7 +61,7 @@ jobs:
 
     - name: Launch Appium server
       run: |
-        nohup appium --base-path /wd/hub --log appium.log > appium.out 2>&1 &
+        nohup appium --log appium.log > appium.out 2>&1 &
         for i in {1..30}; do
           nc -z localhost 4723 && echo "Appium is up" && break
           sleep 1
@@ -74,7 +74,7 @@ jobs:
         UDID: ${{ steps.simulator.outputs.UDID }}
       run: |
         echo $UDID
-        mvn clean test -Dappium.device.udid="$UDID"
+        mvn -q clean test -Dappium.device.udid="$UDID"
 
     - name: Upload test reports
       if: always()
