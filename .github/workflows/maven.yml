@@ -74,6 +74,7 @@ jobs:
         UDID: ${{ steps.simulator.outputs.UDID }}
       run: |
         echo $UDID
+        xcrun simctl list devices | grep "$UDID"
         mvn -q clean test -Dappium.device.udid="$UDID"
 
     - name: Upload test reports
