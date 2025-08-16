@@ -3,6 +3,8 @@ package com.bohdankoshyrets.iosappiumtests.config;
 import io.appium.java_client.ios.options.XCUITestOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.time.Duration;
+
 public class AppiumCapabilities {
     private static final String PLATFORM_NAME = "iOS";
     private static final String PLATFORM_VERSION = "18.6";
@@ -26,6 +28,7 @@ public class AppiumCapabilities {
         XCUITestOptions opts = new XCUITestOptions();
         opts.setUdid(System.getProperty("appium.device.udid"));
         opts.setPlatformVersion("18.6");
+        opts.setWdaLaunchTimeout(Duration.ofSeconds(180));
         return opts;
     }
 }
