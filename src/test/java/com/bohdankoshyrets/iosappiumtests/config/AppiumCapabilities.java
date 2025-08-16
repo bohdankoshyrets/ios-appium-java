@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class AppiumCapabilities {
     private static final String PLATFORM_NAME = "iOS";
-    private static final String PLATFORM_VERSION = "18.6";
+    private static final String PLATFORM_VERSION = "18.0";
     private static final String DEVICE_NAME = "iPhone 16";
     private static final String AUTOMATION_NAME = "XCUITest";
 
