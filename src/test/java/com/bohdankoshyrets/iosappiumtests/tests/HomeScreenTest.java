@@ -21,7 +21,13 @@ public class HomeScreenTest extends BaseTest {
     public void setUpHomeScreen() {
         System.out.println("HOME SCREEN SETUP TEST");
         userTracking = new UserTrackingPage(driver);
+        settings.activateApp();
         // TODO: Remove from final build
+    }
+
+    @AfterMethod
+    public void tearDownHomeScreen() {
+        settings.terminateApp();
     }
 
     @Test

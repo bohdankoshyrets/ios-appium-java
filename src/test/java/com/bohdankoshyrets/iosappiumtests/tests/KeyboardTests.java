@@ -1,7 +1,7 @@
 package com.bohdankoshyrets.iosappiumtests.tests;
 
 import com.bohdankoshyrets.iosappiumtests.base.BaseTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.Locale;
 
@@ -9,6 +9,17 @@ import static com.bohdankoshyrets.iosappiumtests.pages.enums.SettingsMenuItem.*;
 
 
 public class KeyboardTests extends BaseTest {
+
+    @BeforeMethod
+    public void beforeMethodKeyboardTests() {
+        settings.activateApp();
+    }
+
+    @AfterMethod
+    public void afterMethodKeyboardTests() {
+        settings.terminateApp();
+    }
+
     @Test
     public void reorderKeyboard() {
         Locale chosenKeyboardTag = new Locale("de", "DE");

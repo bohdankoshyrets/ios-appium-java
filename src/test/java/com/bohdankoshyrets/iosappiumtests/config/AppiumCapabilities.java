@@ -1,5 +1,6 @@
 package com.bohdankoshyrets.iosappiumtests.config;
 
+import io.appium.java_client.ios.options.XCUITestOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class AppiumCapabilities {
@@ -15,8 +16,15 @@ public class AppiumCapabilities {
         caps.setCapability("appium:deviceName", DEVICE_NAME);
         caps.setCapability("appium:automationName", AUTOMATION_NAME);
         caps.setCapability("appium:bundleId", BundleID.preferences);
+        caps.setCapability("appium:setUdid", "C6BD72C6-D90F-4F57-83D4-18725E2D3141");
 //        caps.setCapability("appium:autoLaunch", "false");
 //        caps.setCapability("appium:noReset", "true");
         return caps;
+    }
+
+    public static XCUITestOptions getOptions() {
+        XCUITestOptions opts = new XCUITestOptions();
+        opts.setUdid(System.getProperty("appium.device.udid"));
+        return opts;
     }
 }
