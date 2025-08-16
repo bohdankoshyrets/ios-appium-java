@@ -4,6 +4,7 @@ import io.appium.java_client.ios.options.XCUITestOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.time.Duration;
+import java.util.Arrays;
 
 public class AppiumCapabilities {
     private static final String PLATFORM_NAME = "iOS";
@@ -30,8 +31,12 @@ public class AppiumCapabilities {
         opts.setUdid(System.getProperty("appium.device.udid"));
         opts.setPlatformName(PLATFORM_NAME);
         opts.setPlatformVersion("18.6");
-        opts.setWdaLaunchTimeout(Duration.ofSeconds(180));
+        opts.setWdaLaunchTimeout(Duration.ofSeconds(60));
         opts.setShowXcodeLog(true);
+        opts.setCapability("xcodebuildArgs", Arrays.asList(
+                "-sdk", "iphonesimulator"
+        ));
+
         return opts;
     }
 }
