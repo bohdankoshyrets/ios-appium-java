@@ -8,6 +8,7 @@ import com.bohdankoshyrets.iosappiumtests.pages.SettingsPage;
 import com.bohdankoshyrets.iosappiumtests.pages.settings.CameraPage;
 import com.bohdankoshyrets.iosappiumtests.pages.settings.PrivacyPage;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.options.XCUITestOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 
@@ -27,9 +28,10 @@ public class BaseTest {
     public void setUp() throws Exception {
         System.out.println("BASE TEST SETUP TESTS");
         DesiredCapabilities caps = AppiumCapabilities.getCapabilities();
+        XCUITestOptions opts = AppiumCapabilities.getOptions();
 
         driver = new IOSDriver(
-                new URL("http://localhost:4723"), caps
+                new URL("http://localhost:4723"), opts
         );
 
         keyboard = new KeyboardPage(driver);

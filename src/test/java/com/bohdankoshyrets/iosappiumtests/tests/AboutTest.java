@@ -11,12 +11,12 @@ public class AboutTest extends BaseTest {
     @BeforeMethod
     public void beforeMethodAboutPage() {
         aboutPage = new AboutPage(driver);
-//        settings.activateApp();
+        settings.activateApp();
     }
 
     @AfterMethod
     public void afterMethodAboutPage() {
-//        settings.terminateApp();
+        settings.terminateApp();
     }
 
     @Test(description = "Open General Settings and check version")
