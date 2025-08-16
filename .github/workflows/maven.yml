@@ -53,7 +53,8 @@ jobs:
         DEVICETYPE="com.apple.CoreSimulator.SimDeviceType.iPhone-16"
         RUNTIME="com.apple.CoreSimulator.SimRuntime.iOS-18-6"
         UDID=$(xcrun simctl create "CI-iPhone" "$DEVICETYPE" "$RUNTIME")
-
+        echo "UDID=$UDID" >> $GITHUB_OUTPUT
+        
         xcrun simctl boot "$UDID"
         xcrun simctl bootstatus "$UDID" -b
         xcrun simctl list devices | grep "$UDID"
@@ -72,6 +73,7 @@ jobs:
         # RUNTIME: ${{ steps.simulator.outputs.RUNTIME }}
         UDID: ${{ steps.simulator.outputs.UDID }}
       run: |
+        echo $UDID
         mvn clean test -Dappium.device.udid="$UDID"
                     
         
