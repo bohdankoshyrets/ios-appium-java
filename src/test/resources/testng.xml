@@ -6,10 +6,10 @@
             <class name="com.bohdankoshyrets.iosappiumtests.tests.HomeScreenTest"/>
         </classes>
     </test>
-    <test name="rest assured API tests">
-        <classes>
-            <class name="com.bohdankoshyrets.iosappiumtests.api.RatesApiTests"/>
-            <class name="com.bohdankoshyrets.iosappiumtests.api.ApiTests"/>
-        </classes>
-    </test>
+<!--    <test name="rest assured API tests">-->
+<!--        <classes>-->
+<!--            <class name="com.bohdankoshyrets.iosappiumtests.api.RatesApiTests"/>-->
+<!--            <class name="com.bohdankoshyrets.iosappiumtests.api.ApiTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

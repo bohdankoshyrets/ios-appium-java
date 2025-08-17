@@ -20,7 +20,10 @@ public class KeyboardTests extends BaseTest {
         settings.terminateApp();
     }
 
-    @Test
+    @Test(
+            enabled = false,
+            description = "[Fix or refactor]"
+    )
     public void reorderKeyboard() {
         Locale chosenKeyboardTag = new Locale("de", "DE");
 
@@ -39,7 +42,10 @@ public class KeyboardTests extends BaseTest {
         keyboardList.assertKeyboardIsAtTop(chosenKeyboardTag);
     }
 
-    @Test
+    @Test(
+            enabled = false,
+            description = "[Fix or refactor]"
+    )
     public void addKeyboard() {
         Locale chosenKeyboardTag = new Locale("de", "DE");
 

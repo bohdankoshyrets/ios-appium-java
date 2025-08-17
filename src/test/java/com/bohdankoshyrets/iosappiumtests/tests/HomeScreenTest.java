@@ -11,18 +11,10 @@ import static com.bohdankoshyrets.iosappiumtests.pages.enums.SettingsMenuItem.*;
 public class HomeScreenTest extends BaseTest {
     private UserTrackingPage userTracking;
 
-    @BeforeSuite
-    public void setUpSuite() {
-        System.out.println("SETUP SUITE");
-        // TODO: Remove from final build
-    }
-
     @BeforeMethod
     public void setUpHomeScreen() {
-        System.out.println("HOME SCREEN SETUP TEST");
         userTracking = new UserTrackingPage(driver);
         settings.activateApp();
-        // TODO: Remove from final build
     }
 
     @AfterMethod

@@ -26,7 +26,6 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        System.out.println("BASE TEST SETUP TESTS");
         DesiredCapabilities caps = AppiumCapabilities.getCapabilities();
         XCUITestOptions opts = AppiumCapabilities.getOptions();
 
