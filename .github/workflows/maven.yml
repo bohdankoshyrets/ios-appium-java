@@ -57,8 +57,8 @@ jobs:
         UDID=$(xcrun simctl create "CI-iPhone" "$DEVICETYPE" "$RUNTIME")
         echo "UDID=$UDID" >> $GITHUB_OUTPUT
         
-#        xcrun simctl boot "$UDID"
-#        xcrun simctl bootstatus "$UDID" -b
+        xcrun simctl boot "$UDID"
+        xcrun simctl bootstatus "$UDID" -b
         xcrun simctl list devices | grep "$UDID"
 
     - name: Launch Appium server
