@@ -32,6 +32,7 @@ public class AppiumCapabilities {
         opts.setUdid(System.getProperty("appium.device.udid"));
         opts.setWdaLaunchTimeout(Duration.ofSeconds(60));
         opts.setShowXcodeLog(true);
+        opts.setBundleId(BundleID.preferences);
         return opts;
     }
 }
