@@ -83,7 +83,7 @@ jobs:
         echo "xcode-select path: "
         xcode-select -p
         
-        mvn -q clean test -Dappium.device.udid="$UDID"
+        mvn -q clean test -Dappium.device.udid="$UDID" -DsuiteXmlFile=src/test/resources/testng.xml
 
     - name: Upload test reports
       if: always()
