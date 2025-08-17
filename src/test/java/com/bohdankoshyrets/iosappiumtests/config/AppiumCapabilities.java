@@ -26,9 +26,10 @@ public class AppiumCapabilities {
     public static XCUITestOptions getOptions() {
         System.out.println("UDID: " + System.getProperty("appium.device.udid"));
         XCUITestOptions opts = new XCUITestOptions();
-        opts.setDeviceName(DEVICE_NAME);
+//        opts.setDeviceName(DEVICE_NAME);
         opts.setPlatformName(PLATFORM_NAME);
-        opts.setPlatformVersion(PLATFORM_VERSION);
+//        opts.setPlatformVersion(PLATFORM_VERSION);
+        opts.setUdid(System.getProperty("appium.device.udid"));
         opts.setWdaLaunchTimeout(Duration.ofSeconds(60));
         opts.setShowXcodeLog(true);
         return opts;
