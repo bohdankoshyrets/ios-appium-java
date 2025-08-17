@@ -38,4 +38,33 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <!-- Disable default class name includes so only TestNG suite runs -->
+          <includes/>
+          <!-- Make Surefire run only the suite file provided via -DsuiteXmlFile=testng.xml -->
+          <suiteXmlFiles>
+            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+          </suiteXmlFiles>
+          <!-- Optional: if suite file is missing or empty, don't fail the build purely due to NoSuchTest trick -->
+          <failIfNoSpecifiedTests>false</failIfNoSpecifiedTests>
+        </configuration>
+      </plugin>
+
+      <!-- Clean up compiler warnings by using release 17 instead of source/target -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <release>17</release>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
