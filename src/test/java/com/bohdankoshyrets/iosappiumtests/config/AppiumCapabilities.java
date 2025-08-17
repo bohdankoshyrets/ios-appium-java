@@ -4,11 +4,10 @@ import io.appium.java_client.ios.options.XCUITestOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.time.Duration;
-import java.util.Arrays;
 
 public class AppiumCapabilities {
     private static final String PLATFORM_NAME = "iOS";
-    private static final String PLATFORM_VERSION = "18.0";
+    private static final String PLATFORM_VERSION = "18.6";
     private static final String DEVICE_NAME = "iPhone 16";
     private static final String AUTOMATION_NAME = "XCUITest";
 
@@ -19,7 +18,6 @@ public class AppiumCapabilities {
         caps.setCapability("appium:deviceName", DEVICE_NAME);
         caps.setCapability("appium:automationName", AUTOMATION_NAME);
         caps.setCapability("appium:bundleId", BundleID.preferences);
-        caps.setCapability("appium:setUdid", "C6BD72C6-D90F-4F57-83D4-18725E2D3141");
 //        caps.setCapability("appium:autoLaunch", "false");
 //        caps.setCapability("appium:noReset", "true");
         return caps;
@@ -28,9 +26,9 @@ public class AppiumCapabilities {
     public static XCUITestOptions getOptions() {
         System.out.println("UDID: " + System.getProperty("appium.device.udid"));
         XCUITestOptions opts = new XCUITestOptions();
-        opts.setUdid(System.getProperty("appium.device.udid"));
+        opts.setDeviceName(DEVICE_NAME);
         opts.setPlatformName(PLATFORM_NAME);
-        opts.setPlatformVersion("18.6");
+        opts.setPlatformVersion(PLATFORM_VERSION);
         opts.setWdaLaunchTimeout(Duration.ofSeconds(60));
         opts.setShowXcodeLog(true);
         return opts;
