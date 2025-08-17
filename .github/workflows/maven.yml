@@ -48,7 +48,6 @@ jobs:
         xcodebuild -version
         xcrun simctl list runtimes
         xcrun simctl list devicetypes
-
     - name: Create and boot iOS Simulator
       shell: bash
       id: simulator
