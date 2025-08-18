@@ -18,18 +18,25 @@ public class AppiumCapabilities {
         caps.setCapability("appium:deviceName", DEVICE_NAME);
         caps.setCapability("appium:automationName", AUTOMATION_NAME);
         caps.setCapability("appium:bundleId", BundleID.preferences);
-//        caps.setCapability("appium:autoLaunch", "false");
-//        caps.setCapability("appium:noReset", "true");
         return caps;
     }
 
     public static XCUITestOptions getOptions() {
+        String udid = System.getProperty("appium.device.udid");
         XCUITestOptions opts = new XCUITestOptions();
+
         opts.setPlatformName(PLATFORM_NAME);
-        opts.setUdid(System.getProperty("appium.device.udid"));
         opts.setWdaLaunchTimeout(Duration.ofSeconds(180));
         opts.setShowXcodeLog(true);
         opts.setBundleId(BundleID.preferences);
+
+        if (udid == null) {
+            opts.setCapability("appium:platformVersion", PLATFORM_VERSION);
+            opts.setCapability("appium:deviceName", DEVICE_NAME);
+        } else {
+            opts.setUdid(udid);
+        }
+
         return opts;
     }
 }
