@@ -1,13 +1,24 @@
 package com.bohdankoshyrets.iosappiumtests.tests;
 
 import com.bohdankoshyrets.iosappiumtests.base.BaseTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static com.bohdankoshyrets.iosappiumtests.pages.enums.CameraOptionItem.*;
 import static com.bohdankoshyrets.iosappiumtests.pages.enums.SettingsMenuItem.*;
 import static com.bohdankoshyrets.iosappiumtests.pages.enums.SwitchState.*;
 
 public class CameraTests extends BaseTest {
+
+    @BeforeMethod
+    public void beforeMethodCameraTests() {
+        settings.activateApp();
+    }
+
+    @AfterMethod
+    public void afterMethodCameraTests() {
+        settings.terminateApp();
+    }
+
     @Test(description = "Asserts that camera settings toggles work")
     public void assertCameraSettingsTogglesWork() {
         settings.assertPageIsVisible();

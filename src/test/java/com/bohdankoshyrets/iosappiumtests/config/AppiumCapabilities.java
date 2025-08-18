@@ -1,6 +1,9 @@
 package com.bohdankoshyrets.iosappiumtests.config;
 
+import io.appium.java_client.ios.options.XCUITestOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.time.Duration;
 
 public class AppiumCapabilities {
     private static final String PLATFORM_NAME = "iOS";
@@ -18,5 +21,15 @@ public class AppiumCapabilities {
 //        caps.setCapability("appium:autoLaunch", "false");
 //        caps.setCapability("appium:noReset", "true");
         return caps;
+    }
+
+    public static XCUITestOptions getOptions() {
+        XCUITestOptions opts = new XCUITestOptions();
+        opts.setPlatformName(PLATFORM_NAME);
+        opts.setUdid(System.getProperty("appium.device.udid"));
+        opts.setWdaLaunchTimeout(Duration.ofSeconds(180));
+        opts.setShowXcodeLog(true);
+        opts.setBundleId(BundleID.preferences);
+        return opts;
     }
 }

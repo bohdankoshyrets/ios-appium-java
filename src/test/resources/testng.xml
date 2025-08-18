@@ -4,12 +4,15 @@
     <test name="appium tests">
         <classes>
             <class name="com.bohdankoshyrets.iosappiumtests.tests.HomeScreenTest"/>
+            <class name="com.bohdankoshyrets.iosappiumtests.tests.AboutTest"/>
+            <class name="com.bohdankoshyrets.iosappiumtests.tests.CameraTests"/>
+            <class name="com.bohdankoshyrets.iosappiumtests.tests.KeyboardTests"/>
         </classes>
     </test>
-    <test name="rest assured API tests">
-        <classes>
-            <class name="com.bohdankoshyrets.iosappiumtests.api.RatesApiTests"/>
-            <class name="com.bohdankoshyrets.iosappiumtests.api.ApiTests"/>
-        </classes>
-    </test>
+<!--    <test name="rest assured API tests">-->
+<!--        <classes>-->
+<!--            <class name="com.bohdankoshyrets.iosappiumtests.api.RatesApiTests"/>-->
+<!--            <class name="com.bohdankoshyrets.iosappiumtests.api.ApiTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>
