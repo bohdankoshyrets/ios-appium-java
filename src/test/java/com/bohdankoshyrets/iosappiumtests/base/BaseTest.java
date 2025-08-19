@@ -1,6 +1,7 @@
 package com.bohdankoshyrets.iosappiumtests.base;
 
 import com.bohdankoshyrets.iosappiumtests.config.AppiumCapabilities;
+import com.bohdankoshyrets.iosappiumtests.config.AppiumServiceBuilderFactory;
 import com.bohdankoshyrets.iosappiumtests.pages.KeyboardPage;
 import com.bohdankoshyrets.iosappiumtests.pages.KeyboardsListPage;
 import com.bohdankoshyrets.iosappiumtests.pages.SettingsGeneralPage;
@@ -12,8 +13,6 @@ import io.appium.java_client.ios.options.XCUITestOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-import java.net.URL;
-
 public class BaseTest {
     protected IOSDriver driver;
     protected KeyboardPage keyboard;
@@ -23,13 +22,18 @@ public class BaseTest {
     protected CameraPage camera;
     protected PrivacyPage privacy;
 
+    AppiumServiceBuilderFactory factory;
+
 
     @BeforeClass
-    public void setUp() throws Exception {
+    public void setUp() {
         XCUITestOptions opts = AppiumCapabilities.getOptions();
 
+        factory = new AppiumServiceBuilderFactory();
+        factory.startAppiumService();
+
         driver = new IOSDriver(
-                new URL("http://localhost:4723"), opts
+                factory.getServiceUrl(), opts
         );
 
         keyboard = new KeyboardPage(driver);
@@ -55,5 +59,7 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
         }
+
+        factory.stopAppiumService();
     }
 }
