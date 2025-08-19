@@ -61,14 +61,6 @@ jobs:
         xcrun simctl bootstatus "$UDID" -b
         xcrun simctl list devices | grep "$UDID"
 
-    - name: Launch Appium server
-      run: |
-        nohup appium --log appium.log > appium.out 2>&1 &
-        for i in {1..30}; do
-          nc -z localhost 4723 && echo "Appium is up" && break
-          sleep 1
-        done
-
     - name: Run tests
       env: 
         # DEVICETYPE: ${{ steps.simulator.outputs.DEVICETYPE }}
@@ -92,8 +84,6 @@ jobs:
         name: surefire-reports
         path: |
           **/surefire-reports/**
-          appium.log
-          appium.out
 
         
     
