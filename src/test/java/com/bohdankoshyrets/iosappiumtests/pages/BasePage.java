@@ -65,7 +65,7 @@ public class BasePage {
         cell.findElement(AppiumBy.iOSClassChain("XCUIElementTypeStaticText")).click();
         String cellValue = cell.getAttribute("value");
         String name = cell.getAttribute("name");
-        System.out.printf("cell value for %s: %s%n", name, cellValue);
+//        System.out.printf("cell value for %s: %s%n", name, cellValue);
 
         SwitchState currentSwitchState = SwitchState.fromString(cellValue);
 

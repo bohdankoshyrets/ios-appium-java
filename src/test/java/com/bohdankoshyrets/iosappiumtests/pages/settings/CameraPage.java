@@ -40,6 +40,13 @@ public class CameraPage extends BasePage {
         softAssert.assertAll();
     }
 
+    public void assertCompositionOptionsExist() {
+        wait.until(ExpectedConditions.elementToBeClickable(GRID_CELL.getBy()));
+        wait.until(ExpectedConditions.elementToBeClickable(LEVEL_CELL.getBy()));
+        wait.until(ExpectedConditions.elementToBeClickable(MIRROR_FRONT_CAM_CELL.getBy()));
+        wait.until(ExpectedConditions.elementToBeClickable(VIEW_OUTSIDE_FRAME_CELL.getBy()));
+    }
+
     private void softAssertCellValue(CameraOptionItem locator, String expected) {
         WebElement cell = driver.findElement(locator.getBy());
         softAssert.assertEquals(cell.getAttribute("value"), expected,

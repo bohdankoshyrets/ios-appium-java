@@ -9,7 +9,7 @@ import com.bohdankoshyrets.iosappiumtests.pages.settings.CameraPage;
 import com.bohdankoshyrets.iosappiumtests.pages.settings.PrivacyPage;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.options.XCUITestOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.net.URL;
@@ -24,9 +24,8 @@ public class BaseTest {
     protected PrivacyPage privacy;
 
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() throws Exception {
-        DesiredCapabilities caps = AppiumCapabilities.getCapabilities();
         XCUITestOptions opts = AppiumCapabilities.getOptions();
 
         driver = new IOSDriver(
@@ -41,8 +40,18 @@ public class BaseTest {
         privacy = new PrivacyPage(driver);
     }
 
-    @AfterMethod
-    public void tearDown() {
+    @AfterMethod(alwaysRun = true)
+    public void tearDownMethod(ITestResult result) {
+        String className = result.getTestClass().getRealClass().getName();
+        String methodName = result.getMethod().getMethodName();
+        String fullMethodName = className + "." + methodName;
+        String status = result.getStatus() == ITestResult.SUCCESS ? "passed" : "failed";
+        String emojiStatus = result.getStatus() ==ITestResult.SUCCESS ? "✅" : "❌";
+        System.out.println(emojiStatus + fullMethodName + " " + status);
+    }
+
+    @AfterClass(alwaysRun = true)
+    public void tearDownClass() {
         if (driver != null) {
             driver.quit();
         }

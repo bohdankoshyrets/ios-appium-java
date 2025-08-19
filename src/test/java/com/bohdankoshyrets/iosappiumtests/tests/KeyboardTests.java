@@ -20,11 +20,8 @@ public class KeyboardTests extends BaseTest {
         settings.terminateApp();
     }
 
-    @Test(
-            enabled = false,
-            description = "[Fix or refactor]"
-    )
-    public void reorderKeyboard() {
+    @Test(description = "[Fix or refactor]")
+    public void shouldMoveChosenKeyboardToTop() {
         Locale chosenKeyboardTag = new Locale("de", "DE");
 
         settings.assertPageIsVisible();
@@ -36,19 +33,26 @@ public class KeyboardTests extends BaseTest {
         keyboard.assertPageIsVisible();
         keyboard.openKeyboards();
 
+        if (!keyboardList.isKeyboardPresent(chosenKeyboardTag)) {
+            keyboardList.addNewKeyboard(chosenKeyboardTag);
+        }
+        keyboardList.assertKeyboardIsPresent(chosenKeyboardTag);
         keyboardList.tapEditButton();
         keyboardList.dragKeyboardToTop(chosenKeyboardTag);
         keyboardList.tapDoneButton();
         keyboardList.assertKeyboardIsAtTop(chosenKeyboardTag);
     }
 
-    @Test(
-            enabled = false,
-            description = "[Fix or refactor]"
-    )
-    public void addKeyboard() {
-        Locale chosenKeyboardTag = new Locale("de", "DE");
+    @Test
+    public void shouldAddChosenKeyboard() {
+        Locale chosenKeyboardTag = new Locale("fr", "FR");
 
+        ensureKeyboardIsRemoved(chosenKeyboardTag);
+        keyboardList.addNewKeyboard(chosenKeyboardTag);
+        keyboardList.assertKeyboardIsPresent(chosenKeyboardTag);
+    }
+
+    private void ensureKeyboardIsRemoved(Locale chosenKeyboardTag) {
         settings.assertPageIsVisible();
         settings.open(GENERAL_CELL);
 
@@ -58,10 +62,8 @@ public class KeyboardTests extends BaseTest {
         keyboard.assertPageIsVisible();
         keyboard.openKeyboards();
 
-        keyboardList.assertKeyboardIsPresent(chosenKeyboardTag);
-        keyboardList.removeKeyboard(chosenKeyboardTag);
+        keyboardList.removeKeyboard(chosenKeyboardTag, false);
         keyboardList.assertKeyboardIsNotPresent(chosenKeyboardTag);
-        keyboardList.addNewKeyboard(chosenKeyboardTag);
     }
 
     @Test
@@ -79,7 +81,7 @@ public class KeyboardTests extends BaseTest {
         keyboardList.assertEditButtonIsDisabled();
     }
 
-    @Test
+    @Test(enabled = false)
     public void openReminders() {
         settings.launchReminders();
     }

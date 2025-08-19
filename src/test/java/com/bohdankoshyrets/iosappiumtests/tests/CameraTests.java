@@ -12,6 +12,10 @@ public class CameraTests extends BaseTest {
     @BeforeMethod
     public void beforeMethodCameraTests() {
         settings.activateApp();
+        settings.assertPageIsVisible();
+        settings.open(CAMERA_CELL);
+
+        camera.assertPageIsShown();
     }
 
     @AfterMethod
@@ -21,12 +25,6 @@ public class CameraTests extends BaseTest {
 
     @Test(description = "Asserts that camera settings toggles work")
     public void assertCameraSettingsTogglesWork() {
-        settings.assertPageIsVisible();
-        settings.open(CAMERA_CELL);
-
-        camera.assertPageIsShown();
-        camera.assertDefaultValues();
-
         camera.toggleCameraSwitch(MACRO_CONTROL_CELL, OFF);
         camera.toggleCameraSwitch(MACRO_CONTROL_CELL, ON);
 
@@ -44,5 +42,15 @@ public class CameraTests extends BaseTest {
 
         camera.toggleCameraSwitch(VIEW_OUTSIDE_FRAME_CELL, OFF);
         camera.toggleCameraSwitch(VIEW_OUTSIDE_FRAME_CELL, ON);
+    }
+
+    @Test
+    public void assertCameraDefaultValues() {
+        camera.assertDefaultValues();
+    }
+
+    @Test
+    public void assertCompositionOptionsPresent() {
+        camera.assertCompositionOptionsExist();
     }
 }

@@ -50,7 +50,7 @@ public class HomeScreenTest extends BaseTest {
         settings.selectResult(searchQuery);
     }
 
-    @Test
+    @Test(dependsOnMethods = "assertSettingsOpens")
     public void shouldOpenPrivacyPage() {
         settings.assertPageIsVisible();
         settings.open(PRIVACY_CELL);

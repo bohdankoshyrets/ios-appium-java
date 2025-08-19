@@ -60,14 +60,17 @@ public class KeyboardsListPage extends BasePage {
         dragFrom(keyboardPoint, destinationPoint);
     }
 
-    public void assertKeyboardIsPresent(Locale keyboardName) {
+    public Boolean isKeyboardPresent(Locale keyboardName) {
         List<WebElement> keyboardCells = getKeyboardCellElements(keyboardName);
-        Assert.assertFalse(keyboardCells.isEmpty(), "Expected keyboard to be present, but it was not");
+        return !keyboardCells.isEmpty();
+    }
+
+    public void assertKeyboardIsPresent(Locale keyboardName) {
+        Assert.assertTrue(isKeyboardPresent(keyboardName), "Expected keyboard to be present, but it was not");
     }
 
     public void assertKeyboardIsNotPresent(Locale keyboardName) {
-        List<WebElement> keyboardCells = getKeyboardCellElements(keyboardName);
-        Assert.assertTrue(keyboardCells.isEmpty(), "Expected keyboard to not be present, but it was");
+        Assert.assertFalse(isKeyboardPresent(keyboardName), "Expected keyboard to not be present, but it was");
     }
 
     public void assertKeyboardIsAtTop(Locale keyboardName) {
@@ -100,10 +103,13 @@ public class KeyboardsListPage extends BasePage {
         }
     }
 
-    public void removeKeyboard(Locale locale) {
+    public void removeKeyboard(Locale locale, Boolean assertKeyboardExists) {
         List<WebElement> keyboardCells = getKeyboardCellElements(locale);
         if (keyboardCells.isEmpty()) {
-            Assert.fail("Keyboard not found");
+            if (assertKeyboardExists) {
+                Assert.fail("Keyboard not found");
+            }
+            return;
         }
         swipe(keyboardCells.get(0), SwipeDirection.LEFT);
         WebElement deleteButton = driver.findElement(DELETE_KEYBOARD_BY);
@@ -112,7 +118,10 @@ public class KeyboardsListPage extends BasePage {
 
     public void removeExtraKeyboards() {
         List<WebElement> keyboardCells = driver.findElements(AppiumBy.iOSNsPredicateString("name != 'AddNewKeyboard' AND type == 'XCUIElementTypeCell'"));
-        Assert.assertTrue(keyboardCells.size() > 1, "There should be at least two keyboards present");
+        Assert.assertFalse(keyboardCells.isEmpty(), "There should be at least one keyboards present");
+        if (keyboardCells.size() == 1) {
+            return;
+        }
         for (int i = 0; i < keyboardCells.size() - 1; i++) {
             WebElement cell = driver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`name != 'AddNewKeyboard'`][" + (keyboardCells.size() - i) + "]"));
             System.out.println("Removing keyboard: " + cell.getAttribute("name"));
