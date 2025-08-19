@@ -38,7 +38,7 @@ jobs:
 
     - name: Install Appium 2 and xcuitest driver
       run: |
-        npm i -g appium@2.19
+        npm i -g appium@latest
         appium -v
         appium driver install xcuitest
         appium driver list --installed
