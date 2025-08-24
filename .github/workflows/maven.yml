@@ -16,7 +16,6 @@ on:
 
 jobs:
   build:
-
     runs-on: macos-15
 
     steps:
@@ -76,6 +75,12 @@ jobs:
         xcode-select -p
         
         mvn -q clean test -Dappium.device.udid="$UDID" -DsuiteXmlFile=src/test/resources/testng.xml
+
+    - name: Publish test results
+      uses: mikepenz/action-junit-report@v5
+      if: success() || failure()
+      with:
+        report-paths: '**/surefire-reports/TEST-*.xml'
 
     - name: Upload test reports
       if: always()
