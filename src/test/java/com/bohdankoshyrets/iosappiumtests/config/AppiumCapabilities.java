@@ -26,14 +26,13 @@ public class AppiumCapabilities {
         XCUITestOptions opts = new XCUITestOptions();
 
         opts.setPlatformName(PLATFORM_NAME);
-        opts.setWdaLaunchTimeout(Duration.ofSeconds(180));
+        opts.setWdaLaunchTimeout(Duration.ofSeconds(120));
         opts.setShowXcodeLog(true);
         opts.setBundleId(BundleID.preferences);
+        opts.setCapability("appium:platformVersion", PLATFORM_VERSION);
+        opts.setCapability("appium:deviceName", DEVICE_NAME);
 
-        if (udid == null) {
-            opts.setCapability("appium:platformVersion", PLATFORM_VERSION);
-            opts.setCapability("appium:deviceName", DEVICE_NAME);
-        } else {
+        if (udid != null) {
             opts.setUdid(udid);
         }
 
