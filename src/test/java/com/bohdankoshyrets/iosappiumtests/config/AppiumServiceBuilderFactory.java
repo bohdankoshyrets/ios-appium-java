@@ -6,22 +6,31 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 import java.net.URL;
 
 public class AppiumServiceBuilderFactory {
-    AppiumServiceBuilder builder;
-    AppiumDriverLocalService service;
+    private final AppiumServiceBuilder builder;
+    private AppiumDriverLocalService service;
 
-    public void startAppiumService() {
-        builder = new AppiumServiceBuilder();
+    public AppiumServiceBuilderFactory() {
+        this.builder = new AppiumServiceBuilder();
         builder.usingAnyFreePort();
-
-        service = AppiumDriverLocalService.buildService(builder);
-        service.start();
     }
 
-    public void stopAppiumService() {
-        service.stop();
+    public synchronized void startAppiumService() {
+        if (service == null || !service.isRunning()) {
+            service = AppiumDriverLocalService.buildService(builder);
+            service.start();
+        }
     }
 
-    public URL getServiceUrl() {
-        return service.getUrl();
+    public synchronized void stopAppiumService() {
+        if (service != null && service.isRunning()) {
+            service.stop();
+        }
+    }
+
+    public synchronized URL getServiceUrl() {
+        if (service != null && service.isRunning()) {
+            return service.getUrl();
+        }
+        throw new IllegalStateException("Appium server is not running");
     }
 }
