@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CalendarPage extends BasePage {
-    private static final String SCREEN_TITLE = "Camera";
+    private static final String SCREEN_TITLE = "Calendar";
     private static final By NAVBAR_TITLE_LOCATOR = AppiumBy.iOSClassChain(String.format("**/XCUIElementTypeNavigationBar/[`name == '%s'`]", SCREEN_TITLE));
     private static final By WEEK_VIEW_CELL = AppiumBy.iOSNsPredicateString("name == 'Week Numbers' AND type == 'XCUIElementTypeCell'");
 

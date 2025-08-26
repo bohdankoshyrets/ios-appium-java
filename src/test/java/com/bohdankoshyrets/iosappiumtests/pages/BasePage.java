@@ -51,14 +51,6 @@ public class BasePage {
         driver.executeScript("mobile: swipe", args);
     }
 
-    protected static void sleepFor(long millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     protected void toggleCellSwitch(By cellBy, SwitchState state) {
         WebElement cell = driver.findElement(cellBy);
         // to scroll down to the cell without changing the switch state
