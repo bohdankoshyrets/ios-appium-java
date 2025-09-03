@@ -2,10 +2,7 @@ package com.bohdankoshyrets.iosappiumtests.base;
 
 import com.bohdankoshyrets.iosappiumtests.config.AppiumCapabilities;
 import com.bohdankoshyrets.iosappiumtests.config.AppiumServiceBuilderFactory;
-import com.bohdankoshyrets.iosappiumtests.pages.KeyboardPage;
-import com.bohdankoshyrets.iosappiumtests.pages.KeyboardsListPage;
-import com.bohdankoshyrets.iosappiumtests.pages.SettingsGeneralPage;
-import com.bohdankoshyrets.iosappiumtests.pages.SettingsPage;
+import com.bohdankoshyrets.iosappiumtests.pages.*;
 import com.bohdankoshyrets.iosappiumtests.pages.settings.CameraPage;
 import com.bohdankoshyrets.iosappiumtests.pages.settings.PrivacyPage;
 import io.appium.java_client.ios.IOSDriver;
@@ -21,12 +18,12 @@ public class BaseTest {
     protected SettingsGeneralPage settingsGeneral;
     protected CameraPage camera;
     protected PrivacyPage privacy;
+    protected RemindersPage reminders;
 
     AppiumServiceBuilderFactory factory;
 
-
     @BeforeClass
-    public void setUp() {
+    public void setUpClass() {
         XCUITestOptions opts = AppiumCapabilities.getOptions();
 
         factory = new AppiumServiceBuilderFactory();
@@ -42,6 +39,8 @@ public class BaseTest {
         settingsGeneral = new SettingsGeneralPage(driver);
         camera = new CameraPage(driver);
         privacy = new PrivacyPage(driver);
+        reminders = new RemindersPage(driver);
+
     }
 
     @AfterMethod(alwaysRun = true)

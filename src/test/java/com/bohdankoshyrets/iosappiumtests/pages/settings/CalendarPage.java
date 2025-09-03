@@ -1,6 +1,6 @@
 package com.bohdankoshyrets.iosappiumtests.pages.settings;
 
-import com.bohdankoshyrets.iosappiumtests.pages.BasePage;
+import com.bohdankoshyrets.iosappiumtests.base.BasePage;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SwitchState;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;

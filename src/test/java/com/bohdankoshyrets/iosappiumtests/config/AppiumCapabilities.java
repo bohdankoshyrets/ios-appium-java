@@ -12,7 +12,6 @@ public class AppiumCapabilities {
         opts.setCapability("appium:deviceName", TestConfig.get("appium.deviceName"));
         opts.setPlatformName(TestConfig.get("appium.platformName"));
         opts.setWdaLaunchTimeout(Duration.ofSeconds(180));
-        opts.setBundleId(BundleID.preferences);
         opts.setShowXcodeLog(false);
 
         if (udid != null) {

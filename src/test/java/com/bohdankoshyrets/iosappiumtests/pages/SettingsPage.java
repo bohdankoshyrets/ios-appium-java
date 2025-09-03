@@ -1,5 +1,7 @@
 package com.bohdankoshyrets.iosappiumtests.pages;
 
+import com.bohdankoshyrets.iosappiumtests.base.BasePage;
+import com.bohdankoshyrets.iosappiumtests.config.BundleID;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SettingsMenuItem;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
@@ -10,6 +12,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class SettingsPage extends BasePage {
+    public void activateApp() {
+        driver.activateApp(BundleID.preferences);
+    }
+
+    public void terminateApp() {
+        driver.terminateApp(BundleID.preferences);
+    }
+
     public SettingsPage(IOSDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -73,9 +83,5 @@ public class SettingsPage extends BasePage {
                 );
         Assert.assertTrue(foundCell.isDisplayed());
         foundCell.click();
-    }
-
-    public void launchReminders() {
-        driver.activateApp("com.apple.reminders");
     }
 }

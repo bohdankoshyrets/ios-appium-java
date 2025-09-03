@@ -1,6 +1,5 @@
-package com.bohdankoshyrets.iosappiumtests.pages;
+package com.bohdankoshyrets.iosappiumtests.base;
 
-import com.bohdankoshyrets.iosappiumtests.config.BundleID;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SwipeDirection;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SwitchState;
 import io.appium.java_client.AppiumBy;
@@ -23,14 +22,6 @@ public class BasePage {
     public BasePage(IOSDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
-
-    public void activateApp() {
-        driver.activateApp(BundleID.preferences);
-    }
-
-    public void terminateApp() {
-        driver.terminateApp("com.apple.Preferences");
     }
 
     protected void dragFrom(Point origin, Point destination) {

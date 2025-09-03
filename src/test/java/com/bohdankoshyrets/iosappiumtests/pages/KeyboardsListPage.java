@@ -1,5 +1,6 @@
 package com.bohdankoshyrets.iosappiumtests.pages;
 
+import com.bohdankoshyrets.iosappiumtests.base.BasePage;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SwipeDirection;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
