@@ -2,9 +2,9 @@ package com.bohdankoshyrets.iosappiumtests.base;
 
 import com.bohdankoshyrets.iosappiumtests.config.AppiumCapabilities;
 import com.bohdankoshyrets.iosappiumtests.config.AppiumServiceBuilderFactory;
-import com.bohdankoshyrets.iosappiumtests.pages.*;
-import com.bohdankoshyrets.iosappiumtests.pages.settings.CameraPage;
-import com.bohdankoshyrets.iosappiumtests.pages.settings.PrivacyPage;
+import com.bohdankoshyrets.iosappiumtests.pages.reminders.RemindersListPage;
+import com.bohdankoshyrets.iosappiumtests.pages.reminders.RemindersPage;
+import com.bohdankoshyrets.iosappiumtests.pages.settings.*;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.options.XCUITestOptions;
 import org.testng.ITestResult;
@@ -19,6 +19,7 @@ public class BaseTest {
     protected CameraPage camera;
     protected PrivacyPage privacy;
     protected RemindersPage reminders;
+    protected RemindersListPage remindersList;
 
     AppiumServiceBuilderFactory factory;
 
@@ -40,6 +41,7 @@ public class BaseTest {
         camera = new CameraPage(driver);
         privacy = new PrivacyPage(driver);
         reminders = new RemindersPage(driver);
+        remindersList = new RemindersListPage(driver);
 
     }
 

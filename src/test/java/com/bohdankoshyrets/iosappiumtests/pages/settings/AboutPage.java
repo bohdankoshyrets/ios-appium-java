@@ -1,4 +1,4 @@
-package com.bohdankoshyrets.iosappiumtests.pages;
+package com.bohdankoshyrets.iosappiumtests.pages.settings;
 
 import com.bohdankoshyrets.iosappiumtests.base.BasePage;
 import io.appium.java_client.AppiumBy;

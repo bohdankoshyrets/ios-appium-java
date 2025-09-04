@@ -1,7 +1,6 @@
 package com.bohdankoshyrets.iosappiumtests.tests;
 
 import com.bohdankoshyrets.iosappiumtests.base.BaseTest;
-import com.bohdankoshyrets.iosappiumtests.pages.*;
 import com.bohdankoshyrets.iosappiumtests.pages.settings.userTracking.UserTrackingPage;
 import org.testng.annotations.*;
 

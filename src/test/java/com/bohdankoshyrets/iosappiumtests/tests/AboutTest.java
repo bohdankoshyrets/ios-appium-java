@@ -1,7 +1,7 @@
 package com.bohdankoshyrets.iosappiumtests.tests;
 
 import com.bohdankoshyrets.iosappiumtests.base.BaseTest;
-import com.bohdankoshyrets.iosappiumtests.pages.AboutPage;
+import com.bohdankoshyrets.iosappiumtests.pages.settings.AboutPage;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SettingsMenuItem;
 import org.testng.annotations.*;
 
