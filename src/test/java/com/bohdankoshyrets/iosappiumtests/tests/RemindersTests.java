@@ -1,10 +1,10 @@
 package com.bohdankoshyrets.iosappiumtests.tests;
 
 import com.bohdankoshyrets.iosappiumtests.base.BaseTest;
+import com.bohdankoshyrets.iosappiumtests.utils.ReminderUtils;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import java.util.UUID;
 
 public class RemindersTests extends BaseTest {
     @BeforeMethod
@@ -28,7 +28,7 @@ public class RemindersTests extends BaseTest {
 
     @Test
     public void createReminderWithTitleOnly() {
-        String reminder = UUID.randomUUID().toString().substring(0, 8);
+        String reminder = ReminderUtils.generateRandomTitle();
 
         reminders.openDefaultList();
         remindersList.assertPageIsShown();
@@ -38,5 +38,18 @@ public class RemindersTests extends BaseTest {
         remindersList.tapDone();
         remindersList.assertReminderIsShown(reminder);
         remindersList.completeReminder(reminder);
+    }
+
+    @Test
+    public void removeReminderAfterCreation() {
+        String reminder = ReminderUtils.generateRandomTitle();
+
+        reminders.openDefaultList();
+        remindersList.assertPageIsShown();
+        remindersList.assertReminderIsNotShown(reminder);
+        remindersList.tapAddNewReminder();
+        remindersList.enterReminderTitle(reminder);
+        remindersList.tapDone();
+        remindersList.deleteReminder(reminder);
     }
 }
