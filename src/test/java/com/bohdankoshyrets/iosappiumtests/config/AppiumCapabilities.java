@@ -8,8 +8,8 @@ public class AppiumCapabilities {
         String udid = System.getProperty("appium.device.udid");
         XCUITestOptions opts = new XCUITestOptions();
 
-        opts.setCapability("appium:platformVersion", TestConfig.get("appium.platformVersion"));
-        opts.setCapability("appium:deviceName", TestConfig.get("appium.deviceName"));
+        opts.setPlatformVersion(TestConfig.get("appium.platformVersion"));
+        opts.setDeviceName(TestConfig.get("appium.deviceName"));
         opts.setPlatformName(TestConfig.get("appium.platformName"));
         opts.setWdaLaunchTimeout(Duration.ofSeconds(180));
         opts.setShowXcodeLog(false);
