@@ -18,7 +18,7 @@ permissions:
   checks: write
 
 jobs:
-  build:
+  build-and-test:
     runs-on: macos-15
 
     steps:
