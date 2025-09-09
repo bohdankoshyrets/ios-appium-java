@@ -80,9 +80,4 @@ public class KeyboardTests extends BaseTest {
         keyboardList.removeExtraKeyboards();
         keyboardList.assertEditButtonIsDisabled();
     }
-
-    @Test(enabled = false)
-    public void openReminders() {
-        settings.launchReminders();
-    }
 }

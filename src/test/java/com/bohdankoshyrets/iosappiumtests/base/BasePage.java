@@ -1,6 +1,5 @@
-package com.bohdankoshyrets.iosappiumtests.pages;
+package com.bohdankoshyrets.iosappiumtests.base;
 
-import com.bohdankoshyrets.iosappiumtests.config.BundleID;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SwipeDirection;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SwitchState;
 import io.appium.java_client.AppiumBy;
@@ -25,14 +24,6 @@ public class BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void activateApp() {
-        driver.activateApp(BundleID.preferences);
-    }
-
-    public void terminateApp() {
-        driver.terminateApp("com.apple.Preferences");
-    }
-
     protected void dragFrom(Point origin, Point destination) {
         Map<String, Object> args = new HashMap<>();
         args.put("fromX", origin.getX());
@@ -51,21 +42,12 @@ public class BasePage {
         driver.executeScript("mobile: swipe", args);
     }
 
-    protected static void sleepFor(long millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     protected void toggleCellSwitch(By cellBy, SwitchState state) {
         WebElement cell = driver.findElement(cellBy);
         // to scroll down to the cell without changing the switch state
         cell.findElement(AppiumBy.iOSClassChain("XCUIElementTypeStaticText")).click();
         String cellValue = cell.getAttribute("value");
         String name = cell.getAttribute("name");
-//        System.out.printf("cell value for %s: %s%n", name, cellValue);
 
         SwitchState currentSwitchState = SwitchState.fromString(cellValue);
 

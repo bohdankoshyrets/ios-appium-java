@@ -7,6 +7,7 @@
             <class name="com.bohdankoshyrets.iosappiumtests.tests.AboutTest"/>
             <class name="com.bohdankoshyrets.iosappiumtests.tests.CameraTests"/>
             <class name="com.bohdankoshyrets.iosappiumtests.tests.KeyboardTests"/>
+            <class name="com.bohdankoshyrets.iosappiumtests.tests.RemindersTests"/>
         </classes>
     </test>
 <!--    <test name="rest assured API tests">-->

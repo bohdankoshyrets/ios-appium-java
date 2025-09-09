@@ -1,6 +1,6 @@
 package com.bohdankoshyrets.iosappiumtests.pages.settings.userTracking;
 
-import com.bohdankoshyrets.iosappiumtests.pages.BasePage;
+import com.bohdankoshyrets.iosappiumtests.base.BasePage;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;

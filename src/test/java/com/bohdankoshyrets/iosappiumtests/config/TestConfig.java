@@ -8,12 +8,11 @@ public class TestConfig {
     final private static Properties PROPS = new Properties();
 
     static {
-        try {
-            InputStream input = TestConfig.class.getClassLoader().getResourceAsStream("appium.properties");
+        try (InputStream input = TestConfig.class.getClassLoader().getResourceAsStream("appium.properties")) {
             if (input != null) {
                 PROPS.load(input);
             }
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException("cannot load appium.properties", e);
         }
     }

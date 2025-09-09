@@ -1,5 +1,6 @@
-package com.bohdankoshyrets.iosappiumtests.pages;
+package com.bohdankoshyrets.iosappiumtests.pages.settings;
 
+import com.bohdankoshyrets.iosappiumtests.base.BasePage;
 import com.bohdankoshyrets.iosappiumtests.pages.enums.SwipeDirection;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
@@ -124,12 +125,10 @@ public class KeyboardsListPage extends BasePage {
         }
         for (int i = 0; i < keyboardCells.size() - 1; i++) {
             WebElement cell = driver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`name != 'AddNewKeyboard'`][" + (keyboardCells.size() - i) + "]"));
-            System.out.println("Removing keyboard: " + cell.getAttribute("name"));
             swipe(cell, SwipeDirection.LEFT);
             WebElement deleteButton = driver.findElement(DELETE_KEYBOARD_BY);
             deleteButton.click();
-            // Wait for delete animation to finish
-            sleepFor(500);
+            wait.until(ExpectedConditions.invisibilityOf(deleteButton));
         }
     }
 
