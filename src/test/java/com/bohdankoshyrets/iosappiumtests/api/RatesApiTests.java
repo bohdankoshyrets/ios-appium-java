@@ -11,7 +11,7 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class RatesApiTests {
+public class RatesApiTests extends RatesApiClient {
     Map<String, Map<String, Object>> rates;
 
     @DataProvider(name = "exchangeCurrencies")
@@ -42,8 +42,8 @@ public class RatesApiTests {
 
     @BeforeSuite
     public void setUp() {
-        RestAssured.baseURI = "https://rates.fm";
-        rates = RatesApiClient.getAllRates();
+        RestAssured.baseURI = BASE_URI;
+        rates = RatesApiClient.fetchAllPagesAndMerge();
         System.out.println("SETUP RATES API TESTS: " + rates);
     }
 

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["base", "rates"],
+  "properties": {
+    "base": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "rates": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "required": ["currency", "bid", "ask", "diff_bid", "diff_ask", "timestamp"],
+          "properties": {
+            "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+            "bid": { "type": "number", "minimum": 0 },
+            "ask": { "type": "number", "minimum": 0 },
+            "diff_bid": { "type": "number" },
+            "diff_ask": { "type": "number" },
+            "timestamp": { "type": "string", "format": "date-time" }
+          },
+          "additionalProperties": true
+        }
+      }
+    },
+    "paging": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
