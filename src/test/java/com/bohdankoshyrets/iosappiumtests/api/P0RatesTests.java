@@ -70,10 +70,10 @@ public class P0RatesTests extends RatesApiClient {
             @SuppressWarnings("unchecked")
             Map<String, Object> ratesMap = (Map<String, Object>) v;
             String currency = (String) ratesMap.get("currency");
-            float bid = (float) ratesMap.get("bid");
-            float ask = (float) ratesMap.get("ask");
-            float diffBid = (float) ratesMap.get("diff_bid");
-            float diffAsk = (float) ratesMap.get("diff_ask");
+            float bid = ((Number) ratesMap.get("bid")).floatValue();
+            float ask = ((Number) ratesMap.get("ask")).floatValue();
+            float diffBid = ((Number) ratesMap.get("diff_bid")).floatValue();
+            float diffAsk = ((Number) ratesMap.get("diff_ask")).floatValue();
 
             sa.assertTrue(bid > 0, "NBU: Bid should be positive for " + currency);
             sa.assertTrue(ask > 0, "NBU: Ask should be positive for " + currency);
@@ -82,6 +82,22 @@ public class P0RatesTests extends RatesApiClient {
             sa.assertEquals(k, currency, "NBU: Currency should be equal for " + currency);
             sa.assertEquals(diffAsk, diffBid, "NBU: Diff ask and diff bid should be equal for " + currency);
         });
+        sa.assertAll();
+    }
+
+    @Test
+    public void rates_are_valid() {
+        Map<String, Map<String, Object>> rates = fetchAllPagesAndMerge();
+        SoftAssert sa = new SoftAssert();
+
+        rates.forEach((bank_key, bank) -> bank.forEach((currency_key, v) -> {
+            @SuppressWarnings("unchecked")
+            Map<String, Object> ratesMap = (Map<String, Object>) v;
+            float bid = ((Number) ratesMap.get("bid")).floatValue();
+            float ask = ((Number) ratesMap.get("ask")).floatValue();
+
+            sa.assertTrue(ask >= bid, bank_key + ": " + "Ask " + ask + " should be >= bid "+ bid +" for " + currency_key);
+        }));
         sa.assertAll();
     }
 }
