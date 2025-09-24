@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.time.Instant;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -95,7 +96,9 @@ public class P0RatesTests extends RatesApiClient {
             Map<String, Object> ratesMap = (Map<String, Object>) v;
             float bid = ((Number) ratesMap.get("bid")).floatValue();
             float ask = ((Number) ratesMap.get("ask")).floatValue();
+            Instant ts = Instant.parse((String) ratesMap.get("timestamp"));
 
+            sa.assertTrue(ts.getNano() <= Instant.now().getNano(), bank_key + ": " + "Timestamp should not be in future " + currency_key);
             sa.assertTrue(ask >= bid, bank_key + ": " + "Ask " + ask + " should be >= bid "+ bid +" for " + currency_key);
         }));
         sa.assertAll();
