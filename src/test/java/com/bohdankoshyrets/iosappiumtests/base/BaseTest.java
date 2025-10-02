@@ -51,7 +51,7 @@ public class BaseTest {
         String methodName = result.getMethod().getMethodName();
         String fullMethodName = className + "." + methodName;
         String status = result.getStatus() == ITestResult.SUCCESS ? "passed" : "failed";
-        String emojiStatus = result.getStatus() ==ITestResult.SUCCESS ? "✅" : "❌";
+        String emojiStatus = result.getStatus() == ITestResult.SUCCESS ? "✅" : "❌";
         System.out.println(emojiStatus + fullMethodName + " " + status);
     }
 
