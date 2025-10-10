@@ -1,8 +1,10 @@
 package com.bohdankoshyrets.iosappiumtests.api.utils;
 
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +12,17 @@ import java.util.Map;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class RatesApiClient {
-    public static Map<String, Map<String, Object>> getAllRates() {
-        String nextPage = "https://rates.fm/api/latest.json";
+    protected static final String BASE_URI = "https://rates.fm";
+
+    protected RequestSpecification spec() {
+        return new RequestSpecBuilder()
+                .setBaseUri(BASE_URI)
+                .setContentType(ContentType.JSON)
+                .build();
+    }
+
+    public static Map <String, Map<String, Object>> fetchAllPagesAndMerge() {
+        String nextPage = BASE_URI + "/api/latest.json";
         Map<String, Map<String, Object>> rates = new HashMap<>();
         int pageCount = 0;
         final int MAX_PAGES = 10;
@@ -27,7 +38,6 @@ public class RatesApiClient {
                     .statusCode(206)
                     .body("rates", notNullValue())
                     .extract().response();
-
             nextPage = response.jsonPath().getString("paging.next");
 
             Map<String, Map<String, Object>> ratesMap = response.jsonPath().getMap("rates");

@@ -4,6 +4,7 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
 import java.net.URL;
+import java.time.Duration;
 
 public class AppiumServiceBuilderFactory {
     private final AppiumServiceBuilder builder;
@@ -12,6 +13,7 @@ public class AppiumServiceBuilderFactory {
     public AppiumServiceBuilderFactory() {
         this.builder = new AppiumServiceBuilder();
         builder.usingAnyFreePort();
+        builder.withTimeout(Duration.ofSeconds(180));
     }
 
     public synchronized void startAppiumService() {

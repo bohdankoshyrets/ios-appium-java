@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="java-testing" verbose="10">
-    <test name="appium tests">
+    <test name="API tests: Rates">
+        <classes>
+            <class name="com.bohdankoshyrets.iosappiumtests.api.P0RatesTests"/>
+        </classes>
+    </test>
+    <test name="Appium tests">
         <classes>
             <class name="com.bohdankoshyrets.iosappiumtests.tests.HomeScreenTest"/>
-            <class name="com.bohdankoshyrets.iosappiumtests.tests.AboutTest"/>
             <class name="com.bohdankoshyrets.iosappiumtests.tests.CameraTests"/>
             <class name="com.bohdankoshyrets.iosappiumtests.tests.KeyboardTests"/>
             <class name="com.bohdankoshyrets.iosappiumtests.tests.RemindersTests"/>
